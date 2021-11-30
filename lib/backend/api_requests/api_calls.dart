@@ -7,7 +7,7 @@ Future<dynamic> loginCall({
 }) {
   return ApiManager.instance.makeApiCall(
     callName: 'Login',
-    apiUrl: 'http://192.168.162.31:8001/api/login',
+    apiUrl: 'https://nbd.bravetech.media/api/login',
     callType: ApiCallType.POST,
     headers: {},
     params: {
@@ -23,7 +23,7 @@ Future<dynamic> loginCall({
 Future<dynamic> getOblogsCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'GetOblogs',
-    apiUrl: 'http://192.168.162.31:8001/api/oblogs',
+    apiUrl: 'https://nbd.bravetech.media/api/oblogs',
     callType: ApiCallType.GET,
     headers: {
       'Authorization': 'Bearer 3|vqAVxUPUAztcZOVPbdzaUe7J16gNTrq3ScjJoQSH',
