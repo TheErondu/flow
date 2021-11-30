@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -19,7 +21,9 @@ class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController textController2;
   bool passwordVisibility;
   bool _loadingButton = false;
+  bool isAuthenticated = false;
   dynamic accessToken;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -188,15 +192,47 @@ class _LoginWidgetState extends State<LoginWidget> {
                             email: textController1.text,
                             password: textController2.text,
                           );
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  NavBarPage(initialPage: 'HomePage'),
-                            ),
-                          );
+                          var error =
+                              (getJsonField(accessToken, r'''$.error'''));
+                          var message =
+                              (getJsonField(accessToken, r'''$.message'''));
+                          var user = (getJsonField(accessToken, r'''$.name'''));
+                          dynamic token =
+                              (getJsonField(accessToken, r'''$.token'''));
 
-                          setState(() {});
+                          if (error == null) {
+                            saveToken() async {
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setString('token', token);
+                            }
+                             setState(() => saveToken);
+
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Text(message),
+                                content: Text("Welcome Back, $user!"),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) => NavBarPage(
+                                          initialPage: 'HomePage',
+                                        ),
+                                      ),
+                                    ),
+                                    child: const Text('Go to Dashboard'),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            setState(() => _loadingButton = false);
+                          } else {
+                            setState(() => _showToastError(context));
+                          }
                         } finally {
                           setState(() => _loadingButton = false);
                         }
@@ -240,6 +276,18 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  void _showToastError(BuildContext context) {
+    var loginError = (getJsonField(accessToken, r'''$.error'''));
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      SnackBar(
+        content: Text(loginError),
+        action: SnackBarAction(
+            label: 'Close', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );
   }

@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: NavBarPage(),
+      home: IndexWidget(),
     );
   }
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage}) : super(key: key);
+  NavBarPage({Key key, this.initialPage, userAccesstoken}) : super(key: key);
 
   final String initialPage;
 

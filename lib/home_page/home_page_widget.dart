@@ -18,7 +18,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+       onWillPop: () async => false,
+    child: Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFF030303),
       drawer: Drawer(
@@ -832,6 +834,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           ),
         ),
       ),
+    )
     );
   }
 }

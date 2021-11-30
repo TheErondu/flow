@@ -318,9 +318,8 @@ class _IndexWidgetState extends State<IndexWidget> {
                     onPressed: () async {
                       setState(() => _loadingButton = true);
                       try {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
+                        await Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
                             builder: (context) => LoginWidget(),
                           ),
                         );
