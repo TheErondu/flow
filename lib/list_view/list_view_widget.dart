@@ -9,7 +9,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ListViewWidget extends StatefulWidget {
-  ListViewWidget({Key key}) : super(key: key);
+  const ListViewWidget({Key key}) : super(key: key);
 
   @override
   _ListViewWidgetState createState() => _ListViewWidgetState();

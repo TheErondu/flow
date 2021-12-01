@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class IndexWidget extends StatefulWidget {
-  IndexWidget({Key key}) : super(key: key);
+  const IndexWidget({Key key}) : super(key: key);
 
   @override
   _IndexWidgetState createState() => _IndexWidgetState();
