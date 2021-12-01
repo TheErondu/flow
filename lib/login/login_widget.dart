@@ -197,34 +197,37 @@ class _LoginWidgetState extends State<LoginWidget> {
                           var message =
                               (getJsonField(accessToken, r'''$.message'''));
                           var user = (getJsonField(accessToken, r'''$.name'''));
-                          dynamic token =
-                              (getJsonField(accessToken, r'''$.token'''));
+                          dynamic token = (getJsonField(
+                              accessToken, r'''$.access_token'''));
 
                           if (error == null) {
-                            saveToken() async {
+                            
                               SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
                               prefs.setString('token', token);
-                            }
-                             setState(() => saveToken);
+
+                              var userToken = prefs.getString('token');
+                            
 
                             showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
                                 title: Text(message),
-                                content: Text("Welcome Back, $user!"),
+                                content: Text(
+                                    "Welcome Back, $user!, your token is $userToken"),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () =>
-                                        Navigator.of(context).pushReplacement(
+                                        Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                         builder: (context) => NavBarPage(
                                           initialPage: 'HomePage',
                                         ),
                                       ),
-                                    ),
+                                      (Route route) => false),
+
                                     child: const Text('Go to Dashboard'),
-                                  ),
+                                    ),
                                 ],
                               ),
                             );

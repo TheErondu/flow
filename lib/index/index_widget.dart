@@ -1,3 +1,5 @@
+import 'package:brave/home_page/home_page_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -6,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../main.dart';
 
 class IndexWidget extends StatefulWidget {
   IndexWidget({Key key}) : super(key: key);
@@ -318,11 +322,24 @@ class _IndexWidgetState extends State<IndexWidget> {
                     onPressed: () async {
                       setState(() => _loadingButton = true);
                       try {
-                        await Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                            builder: (context) => LoginWidget(),
-                          ),
-                        );
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        var token = prefs.getString('token');
+                        if (token == null) {
+                          await Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => LoginWidget(),
+                            ),
+                          );
+                        } else {
+                          await Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => NavBarPage(
+                                initialPage: 'HomePage',
+                              ),
+                            ),
+                          );
+                        }
                       } finally {
                         setState(() => _loadingButton = false);
                       }
