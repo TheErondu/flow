@@ -1,7 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'AuthProvider.dart' as AuthProvider;
-
 import 'api_manager.dart';
 
 Future<dynamic> loginCall(
@@ -10,7 +8,7 @@ Future<dynamic> loginCall(
     String device_name = 'generic_mobile'}) {
   return ApiManager.instance.makeApiCall(
     callName: 'Login',
-    apiUrl: 'http://127.0.0.1:8001/api/login',
+    apiUrl: 'http://192.168.231.31:8001/api/login',
     callType: ApiCallType.POST,
     headers: {},
     params: {'email': email, 'password': password, 'device_name': device_name},
@@ -24,7 +22,7 @@ Future<dynamic> getOblogsCall() async {
   var userToken = prefs.getString('token');
   return ApiManager.instance.makeApiCall(
     callName: 'GetOblogs',
-    apiUrl: 'http://127.0.0.1:8001/api/oblogs',
+    apiUrl: 'http://192.168.231.31:8001/api/oblogs',
     callType: ApiCallType.GET,
     headers: {
       'Authorization': 'Bearer $userToken',
