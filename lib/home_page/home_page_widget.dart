@@ -23,9 +23,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return 
     Scaffold(
       key: scaffoldKey,
-      backgroundColor: Color(0xFF030303),
+      backgroundColor: FlutterFlowTheme.primaryColor,
       drawer: DrawerWidget(),
-      body: SafeArea(
+ body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,

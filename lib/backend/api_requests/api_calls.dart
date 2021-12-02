@@ -1,6 +1,20 @@
+import 'package:brave/flutter_flow/flutter_flow_util.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'api_manager.dart';
+
+dynamic ngrokUrl;
+
+Future<dynamic> getNgrokUrl() async {
+  return ApiManager.instance.makeApiCall(
+    callName: 'GetNgrokUrL',
+    apiUrl: 'https://qodestone-api.herokuapp.com/ngrok',
+    callType: ApiCallType.GET,
+    headers: {},
+    params: {},
+    returnResponse: true,
+  );
+}
 
 Future<dynamic> loginCall(
     {String email = 'email',
@@ -8,7 +22,7 @@ Future<dynamic> loginCall(
     String device_name = 'generic_mobile'}) {
   return ApiManager.instance.makeApiCall(
     callName: 'Login',
-    apiUrl: 'http://192.168.231.31:8001/api/login',
+    apiUrl: 'http://9917-197-210-53-38.ngrok.io/api/login',
     callType: ApiCallType.POST,
     headers: {},
     params: {'email': email, 'password': password, 'device_name': device_name},
@@ -19,10 +33,12 @@ Future<dynamic> loginCall(
 
 Future<dynamic> getOblogsCall() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
+   ngrokUrl = await getNgrokUrl();
   var userToken = prefs.getString('token');
+ var baseUrl = (getJsonField(ngrokUrl, r'''$..url'''));
   return ApiManager.instance.makeApiCall(
     callName: 'GetOblogs',
-    apiUrl: 'http://192.168.231.31:8001/api/oblogs',
+    apiUrl: '$baseUrl/api/oblogs',
     callType: ApiCallType.GET,
     headers: {
       'Authorization': 'Bearer $userToken',
@@ -31,3 +47,4 @@ Future<dynamic> getOblogsCall() async {
     returnResponse: true,
   );
 }
+
