@@ -1,4 +1,5 @@
 import '../flutter_flow/flutter_flow_audio_player.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,20 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.primaryColor,
         automaticallyImplyLeading: true,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: FlutterFlowTheme.tertiaryColor,
+            size: 30,
+          ),
+          onPressed: () {
+            print('IconButton pressed ...');
+          },
+        ),
         title: Text(
           'LIVE RADIO -Nation FM',
           style: FlutterFlowTheme.bodyText1.override(
@@ -52,11 +67,14 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset(
-                        'assets/images/logod.png',
-                        width: double.infinity,
-                        height: 240,
-                        fit: BoxFit.cover,
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
+                        child: Image.asset(
+                          'assets/images/logod.png',
+                          width: double.infinity,
+                          height: 260,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 25),
@@ -109,7 +127,7 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
               audio: Audio.network(
                 'http://stream.radiojar.com/3by7s8eg65quv',
                 metas: Metas(
-                  id: '3by7s8eg65quv-i071eaj9',
+                  id: '3by7s8eg65quv-ljtlqe2a',
                   title: 'Nation FM',
                 ),
               ),
