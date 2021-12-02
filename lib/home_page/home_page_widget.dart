@@ -119,7 +119,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: Colors.black,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 4,
@@ -127,6 +126,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         offset: Offset(0, -1),
                       )
                     ],
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF2D3886), Colors.black],
+                      stops: [0, 1],
+                      begin: AlignmentDirectional(0, -1),
+                      end: AlignmentDirectional(0, 1),
+                    ),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(0),
                       bottomRight: Radius.circular(0),
@@ -197,7 +202,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 8, 0, 0),
                                           child: Text(
-                                            'Logs',
+                                            'Reports',
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Lexend Deca',
@@ -234,7 +239,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Icon(
-                                          Icons.stacked_line_chart_rounded,
+                                          Icons.event_rounded,
                                           color: Color(0xFF1E2429),
                                           size: 40,
                                         ),
@@ -243,7 +248,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 8, 0, 0),
                                           child: Text(
-                                            'Activity',
+                                            'Production Events',
+                                            textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Lexend Deca',
@@ -289,7 +295,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 8, 0, 0),
                                           child: Text(
-                                            'Notifications',
+                                            'Your Issues',
                                             style: FlutterFlowTheme.bodyText1
                                                 .override(
                                               fontFamily: 'Lexend Deca',
@@ -382,7 +388,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Icon(
-                                          Icons.stacked_line_chart_rounded,
+                                          Icons.event_rounded,
                                           color: Color(0xFF1E2429),
                                           size: 40,
                                         ),
@@ -428,7 +434,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Icon(
-                                          Icons.notifications,
+                                          Icons.handyman_outlined,
                                           color: Color(0xFF1E2429),
                                           size: 40,
                                         ),
@@ -483,10 +489,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Icon(
-                                          Icons.receipt_long,
-                                          color: Color(0xFF1E2429),
-                                          size: 40,
+                                        Card(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          color: Color(0xFFF5F5F5),
+                                          child: Icon(
+                                            Icons.receipt_long,
+                                            color: Color(0xFF1E2429),
+                                            size: 40,
+                                          ),
                                         ),
                                         Padding(
                                           padding:
