@@ -644,7 +644,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 1,
+                height: MediaQuery.of(context).size.height * 0.6,
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -663,477 +663,474 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     begin: AlignmentDirectional(0, -1),
                     end: AlignmentDirectional(0, 1),
                   ),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(0),
-                    bottomRight: Radius.circular(0),
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
-                  ),
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Quick Links',
-                                style: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 110,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 5,
-                                      color: Color(0x3B000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 4, 4, 4),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ReportsListViewWidget(),
-                                        ),
-                                        (r) => false,
-                                      );
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.receipt_long,
-                                          color: Color(0xFF1E2429),
-                                          size: 40,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 8, 0, 0),
-                                          child: Text(
-                                            'Reports',
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF090F13),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Quick Links',
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: FlutterFlowTheme.tertiaryColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
                                   ),
-                                ),
-                              ),
-                              Container(
-                                width: 110,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 5,
-                                      color: Color(0x3A000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 4, 4, 4),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ReportsListViewWidget(),
-                                        ),
-                                        (r) => false,
-                                      );
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.event_rounded,
-                                          color: Color(0xFF1E2429),
-                                          size: 40,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 8, 0, 0),
-                                          child: Text(
-                                            'Production Events',
-                                            textAlign: TextAlign.center,
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF090F13),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 110,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 5,
-                                      color: Color(0x39000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 4, 4, 4),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ReportsListViewWidget(),
-                                        ),
-                                        (r) => false,
-                                      );
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.handyman_outlined,
-                                          color: Color(0xFF1E2429),
-                                          size: 40,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 8, 0, 0),
-                                          child: Text(
-                                            'Your Issues',
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF090F13),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 110,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 5,
-                                      color: Color(0x3B000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 4, 4, 4),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              LiveTvPageWidget(),
-                                        ),
-                                        (r) => false,
-                                      );
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.live_tv,
-                                          color: Color(0xFF1E2429),
-                                          size: 40,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 8, 0, 0),
-                                          child: Text(
-                                            'Live TV',
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF090F13),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 110,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 5,
-                                      color: Color(0x3A000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 4, 4, 4),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              RadioPageWidget(),
-                                        ),
-                                        (r) => false,
-                                      );
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.radio_outlined,
-                                          color: Color(0xFF1E2429),
-                                          size: 40,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 8, 0, 0),
-                                          child: Text(
-                                            'Live Radio',
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF090F13),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 110,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 5,
-                                      color: Color(0x39000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      4, 4, 4, 4),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      await Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => NavBarPage(
-                                              initialPage: 'SettingsPage'),
-                                        ),
-                                        (r) => false,
-                                      );
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.settings_outlined,
-                                          color: Color(0xFF1E2429),
-                                          size: 40,
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 8, 0, 0),
-                                          child: Text(
-                                            'Settings',
-                                            style: FlutterFlowTheme.bodyText1
-                                                .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF090F13),
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                      child: Card(
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: Color(0xFFF5F5F5),
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Image.asset(
-                              'assets/images/login-bg.jpg',
-                              width: double.infinity,
-                              height: 120,
-                              fit: BoxFit.cover,
+                                )
+                              ],
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  15, 15, 15, 25),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 110,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 5,
+                                        color: Color(0x3B000000),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          'Next show',
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600,
+                                        4, 4, 4, 4),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ReportsListViewWidget(),
                                           ),
-                                        ),
-                                        Text(
-                                          getCurrentTimestamp.toString(),
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            color:
-                                                FlutterFlowTheme.secondaryColor,
+                                          (r) => false,
+                                        );
+                                      },
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.receipt_long,
+                                            color: Color(0xFF1E2429),
+                                            size: 40,
                                           ),
-                                        )
-                                      ],
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 8, 0, 0),
+                                            child: Text(
+                                              'Reports',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF090F13),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  Padding(
+                                ),
+                                Container(
+                                  width: 110,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 5,
+                                        color: Color(0x3A000000),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
-                                    child: Text(
-                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum gravida mattis lorem, et posuere tortor rutrum vitae.',
-                                      style: FlutterFlowTheme.bodyText1,
+                                        4, 4, 4, 4),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ReportsListViewWidget(),
+                                          ),
+                                          (r) => false,
+                                        );
+                                      },
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.event_rounded,
+                                            color: Color(0xFF1E2429),
+                                            size: 40,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 8, 0, 0),
+                                            child: Text(
+                                              'Production Events',
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF090F13),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 110,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 5,
+                                        color: Color(0x39000000),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        4, 4, 4, 4),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ReportsListViewWidget(),
+                                          ),
+                                          (r) => false,
+                                        );
+                                      },
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.handyman_outlined,
+                                            color: Color(0xFF1E2429),
+                                            size: 40,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 8, 0, 0),
+                                            child: Text(
+                                              'Your Issues',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF090F13),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 110,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 5,
+                                        color: Color(0x3B000000),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        4, 4, 4, 4),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                LiveTvPageWidget(),
+                                          ),
+                                          (r) => false,
+                                        );
+                                      },
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.live_tv,
+                                            color: Color(0xFF1E2429),
+                                            size: 40,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 8, 0, 0),
+                                            child: Text(
+                                              'Live TV',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF090F13),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 110,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 5,
+                                        color: Color(0x3A000000),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        4, 4, 4, 4),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                RadioPageWidget(),
+                                          ),
+                                          (r) => false,
+                                        );
+                                      },
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.radio_outlined,
+                                            color: Color(0xFF1E2429),
+                                            size: 40,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 8, 0, 0),
+                                            child: Text(
+                                              'Live Radio',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF090F13),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 110,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 5,
+                                        color: Color(0x39000000),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        4, 4, 4, 4),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.pushAndRemoveUntil(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'SettingsPage'),
+                                          ),
+                                          (r) => false,
+                                        );
+                                      },
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.settings_outlined,
+                                            color: Color(0xFF1E2429),
+                                            size: 40,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 8, 0, 0),
+                                            child: Text(
+                                              'Settings',
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF090F13),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Color(0xFFF5F5F5),
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                'assets/images/login-bg.jpg',
+                                width: double.infinity,
+                                height: 120,
+                                fit: BoxFit.cover,
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15, 15, 15, 25),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 10, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            'Next show',
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            getCurrentTimestamp.toString(),
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: FlutterFlowTheme
+                                                  .secondaryColor,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 8, 0, 0),
+                                      child: Text(
+                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum gravida mattis lorem, et posuere tortor rutrum vitae.',
+                                        style: FlutterFlowTheme.bodyText1,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             )
