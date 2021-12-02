@@ -41,7 +41,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         final homePageGetUserInfoResponse = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
-          backgroundColor: Color(0xFF09112B),
+          backgroundColor: Color(0xFF13172C),
           drawer: Drawer(
             elevation: 16,
             child: Container(
@@ -598,7 +598,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               children: [
                 Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: Color(0xFF2D3886),
+                  color: Color(0xFF808080),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -702,12 +702,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       )
                     ],
                     gradient: LinearGradient(
-                      colors: [
-                        Color(0xFF2D3886),
-                        Colors.black,
-                        FlutterFlowTheme.primaryColor
-                      ],
-                      stops: [0, 0.3, 0.8],
+                      colors: [Color(0xFF353535), Color(0xFF13172C)],
+                      stops: [0, 0.3],
                       begin: AlignmentDirectional(0, -1),
                       end: AlignmentDirectional(0, 1),
                     ),

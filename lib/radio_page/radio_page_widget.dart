@@ -2,6 +2,7 @@ import '../flutter_flow/flutter_flow_audio_player.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,8 +34,13 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
             color: FlutterFlowTheme.tertiaryColor,
             size: 30,
           ),
-          onPressed: () {
-            print('IconButton pressed ...');
+          onPressed: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(initialPage: 'HomePage'),
+              ),
+            );
           },
         ),
         title: Text(
@@ -67,14 +73,11 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
-                        child: Image.asset(
-                          'assets/images/logod.png',
-                          width: double.infinity,
-                          height: 260,
-                          fit: BoxFit.cover,
-                        ),
+                      Image.asset(
+                        'assets/images/logod.png',
+                        width: double.infinity,
+                        height: 300,
+                        fit: BoxFit.fill,
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(15, 15, 15, 25),
@@ -127,7 +130,7 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
               audio: Audio.network(
                 'http://stream.radiojar.com/3by7s8eg65quv',
                 metas: Metas(
-                  id: '3by7s8eg65quv-ljtlqe2a',
+                  id: '3by7s8eg65quv-um5th210',
                   title: 'Nation FM',
                 ),
               ),
