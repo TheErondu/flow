@@ -1,19 +1,12 @@
-import 'package:brave/flutter_flow/flutter_flow_util.dart';
+import 'package:brave/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'api_manager.dart';
 
-dynamic ngrokUrl;
-
-Future<dynamic> getNgrokUrl() async {
-  return ApiManager.instance.makeApiCall(
-    callName: 'GetNgrokUrL',
-    apiUrl: 'https://qodestone-api.herokuapp.com/ngrok',
-    callType: ApiCallType.GET,
-    headers: {},
-    params: {},
-    returnResponse: true,
-  );
+const apiUrl = "http://192.168.231.31:8001/api";
+Future getToken() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var token = prefs.getString('token');
+  return token;
 }
 
 Future<dynamic> loginCall(
@@ -22,7 +15,7 @@ Future<dynamic> loginCall(
     String device_name = 'generic_mobile'}) {
   return ApiManager.instance.makeApiCall(
     callName: 'Login',
-    apiUrl: 'http://9917-197-210-53-38.ngrok.io/api/login',
+    apiUrl: '$apiUrl/login',
     callType: ApiCallType.POST,
     headers: {},
     params: {'email': email, 'password': password, 'device_name': device_name},
@@ -32,13 +25,10 @@ Future<dynamic> loginCall(
 }
 
 Future<dynamic> getOblogsCall() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-   ngrokUrl = await getNgrokUrl();
-  var userToken = prefs.getString('token');
- var baseUrl = (getJsonField(ngrokUrl, r'''$..url'''));
+  var userToken = await getToken();
   return ApiManager.instance.makeApiCall(
     callName: 'GetOblogs',
-    apiUrl: '$baseUrl/api/oblogs',
+    apiUrl: '$apiUrl/oblogs',
     callType: ApiCallType.GET,
     headers: {
       'Authorization': 'Bearer $userToken',
@@ -48,3 +38,16 @@ Future<dynamic> getOblogsCall() async {
   );
 }
 
+Future<dynamic> getUserInfoCall() async {
+    var userToken = await getToken();
+  return ApiManager.instance.makeApiCall(
+    callName: 'GetUserInfo',
+    apiUrl: '$apiUrl',
+    callType: ApiCallType.GET,
+    headers: {
+      'Authorization': 'Bearer $userToken',
+    },
+    params: {},
+    returnResponse: true,
+  );
+}
