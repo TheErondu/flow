@@ -181,7 +181,7 @@ packages:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "9.2.0"
+    version: "8.11.0"
   google_fonts:
     dependency: "direct main"
     description:
@@ -508,21 +508,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.16"
-  url_launcher_android:
-    dependency: transitive
-    description:
-      name: url_launcher_android
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.0.13"
-  url_launcher_ios:
-    dependency: transitive
-    description:
-      name: url_launcher_ios
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.0.13"
+    version: "6.0.15"
   url_launcher_linux:
     dependency: transitive
     description:
