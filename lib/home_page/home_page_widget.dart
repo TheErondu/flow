@@ -31,93 +31,103 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                            child: Container(
-                              width: 60,
-                              height: 60,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                              ),
-                              child: Image.asset(
-                                'assets/images/avatar.png',
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                      child: Column(
+              Card(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                color: Color(0xFF2D3886),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Column(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Welcome,',
-                                style: FlutterFlowTheme.title3.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                          Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                              child: Container(
+                                width: 60,
+                                height: 60,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(
-                                  'Andrew',
-                                  style: FlutterFlowTheme.title3.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFF00968A),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                child: Image.asset(
+                                  'assets/images/avatar.png',
                                 ),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                            child: Text(
-                              'Your latest updates are below.',
-                              style: FlutterFlowTheme.bodyText1.override(
-                                fontFamily: 'Lexend Deca',
-                                color: FlutterFlowTheme.tertiaryColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
                               ),
                             ),
                           )
                         ],
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Welcome,',
+                                  style: FlutterFlowTheme.title3.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: FlutterFlowTheme.tertiaryColor,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      4, 0, 0, 0),
+                                  child: Text(
+                                    'Andrew',
+                                    style: FlutterFlowTheme.title3.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF00968A),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                              child: Text(
+                                'Your latest updates are below.',
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: FlutterFlowTheme.tertiaryColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 1,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -127,8 +137,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       )
                     ],
                     gradient: LinearGradient(
-                      colors: [Color(0xFF2D3886), Colors.black],
-                      stops: [0, 1],
+                      colors: [
+                        Color(0xFF2D3886),
+                        Color(0xFFA80808),
+                        Color(0xFF673AB7)
+                      ],
+                      stops: [0, 1, 1],
                       begin: AlignmentDirectional(0, -1),
                       end: AlignmentDirectional(0, 1),
                     ),
