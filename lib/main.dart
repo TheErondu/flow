@@ -6,6 +6,7 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'home_page/home_page_widget.dart';
 import 'list_view/list_view_widget.dart';
 import 'settings_page/settings_page_widget.dart';
+import 'radio_page/radio_page_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() {
@@ -55,6 +56,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'HomePage': HomePageWidget(),
       'ListView': ListViewWidget(),
       'SettingsPage': SettingsPageWidget(),
+      'RadioPage': RadioPageWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -82,6 +84,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Settings',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.radio_outlined,
+              size: 24,
+            ),
+            label: 'Home',
             tooltip: '',
           )
         ],
