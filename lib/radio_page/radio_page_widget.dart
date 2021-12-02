@@ -1,6 +1,6 @@
+import '../flutter_flow/flutter_flow_audio_player.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,18 +28,27 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
       ),
       backgroundColor: Color(0xFFF5F5F5),
       body: SafeArea(
-        child: Stack(
-          children: [
-            FlutterFlowVideoPlayer(
-              path: 'http://stream.radiojar.com/3by7s8eg65quv',
-              videoType: VideoType.network,
-              autoPlay: true,
-              looping: true,
-              showControls: true,
-              allowFullScreen: true,
-              allowPlaybackSpeedMenu: true,
-            )
-          ],
+        child: FlutterFlowAudioPlayer(
+          audio: Audio.network(
+            'http://stream.radiojar.com/3by7s8eg65quv',
+            metas: Metas(
+              id: '3by7s8eg65quv-lmi974bm',
+              title: 'Nation FM',
+            ),
+          ),
+          titleTextStyle: FlutterFlowTheme.bodyText1.override(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.w600,
+          ),
+          playbackDurationTextStyle: FlutterFlowTheme.bodyText1.override(
+            fontFamily: 'Poppins',
+            color: Color(0xFF9D9D9D),
+            fontSize: 12,
+          ),
+          fillColor: Color(0xFFEEEEEE),
+          playbackButtonColor: FlutterFlowTheme.primaryColor,
+          activeTrackColor: Color(0xFF57636C),
+          elevation: 4,
         ),
       ),
     );
