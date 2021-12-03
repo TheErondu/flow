@@ -5,9 +5,9 @@ import 'package:brave/index/index_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'home_page/home_page_widget.dart';
 import 'list_view/list_view_widget.dart';
-import 'settings_page/settings_page_widget.dart';
-import 'radio_page/radio_page_widget.dart';
 import 'live_tv_page/live_tv_page_widget.dart';
+import 'radio_page/radio_page_widget.dart';
+import 'settings_page/settings_page_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() {
@@ -56,9 +56,9 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'ListView': ListViewWidget(),
-      'SettingsPage': SettingsPageWidget(),
-      'RadioPage': RadioPageWidget(),
       'LiveTvPage': LiveTvPageWidget(),
+      'RadioPage': RadioPageWidget(),
+      'SettingsPage': SettingsPageWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -82,10 +82,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.settings,
+              Icons.live_tv,
               size: 24,
             ),
-            label: 'Settings',
+            label: 'Live TV',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -98,10 +98,10 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.live_tv,
+              Icons.settings,
               size: 24,
             ),
-            label: 'Live TV',
+            label: 'Settings',
             tooltip: '',
           )
         ],
