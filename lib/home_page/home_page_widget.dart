@@ -2,7 +2,6 @@ import '../backend/api_requests/api_calls.dart';
 import '../detail_page/detail_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../live_tv_page/live_tv_page_widget.dart';
 import '../login/login_widget.dart';
 import '../main.dart';
 import '../reports_list_view/reports_list_view_widget.dart';
@@ -282,8 +281,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                LiveTvPageWidget(),
+                                            builder: (context) => NavBarPage(
+                                                initialPage: 'LiveTvPage'),
                                           ),
                                         );
                                       },
@@ -598,7 +597,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               children: [
                 Card(
                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                  color: Color(0xFF808080),
+                  color: Color(0xFF38383E),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -662,7 +661,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           .toString(),
                                       style: FlutterFlowTheme.title3.override(
                                         fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF00968A),
+                                        color: Color(0xFFE7AD11),
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -766,13 +765,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           4, 4, 4, 4),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.pushAndRemoveUntil(
+                                          await Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   ReportsListViewWidget(),
                                             ),
-                                            (r) => false,
                                           );
                                         },
                                         child: Column(
@@ -952,13 +950,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           4, 4, 4, 4),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.pushAndRemoveUntil(
+                                          await Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) =>
-                                                  LiveTvPageWidget(),
+                                              builder: (context) => NavBarPage(
+                                                  initialPage: 'LiveTvPage'),
                                             ),
-                                            (r) => false,
                                           );
                                         },
                                         child: Column(

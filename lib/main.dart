@@ -7,6 +7,7 @@ import 'home_page/home_page_widget.dart';
 import 'list_view/list_view_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 import 'radio_page/radio_page_widget.dart';
+import 'live_tv_page/live_tv_page_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() {
@@ -57,6 +58,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'ListView': ListViewWidget(),
       'SettingsPage': SettingsPageWidget(),
       'RadioPage': RadioPageWidget(),
+      'LiveTvPage': LiveTvPageWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -67,7 +69,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.home_outlined,
               size: 24,
             ),
-            label: 'Home',
+            label: 'Live Radio',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -92,6 +94,14 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.live_tv,
+              size: 24,
+            ),
+            label: 'Live TV',
             tooltip: '',
           )
         ],
