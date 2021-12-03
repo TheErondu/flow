@@ -21,7 +21,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<dynamic>(
-      future: getOblogsCall(),
+      future: getDirReportsCall(),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -36,7 +36,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
             ),
           );
         }
-        final detailPageGetOblogsResponse = snapshot.data;
+        final detailPageGetDirReportsResponse = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: Colors.black,
@@ -144,7 +144,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                 child: Text(
-                                  getJsonField(detailPageGetOblogsResponse,
+                                  getJsonField(detailPageGetDirReportsResponse,
                                           r'''$..oblogs.0.event_name''')
                                       .toString(),
                                   style: FlutterFlowTheme.subtitle1.override(
@@ -175,7 +175,8 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    getJsonField(detailPageGetOblogsResponse,
+                                    getJsonField(
+                                            detailPageGetDirReportsResponse,
                                             r'''$..oblogs.0.event_date''')
                                         .toString(),
                                     'date',
@@ -200,7 +201,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  getJsonField(detailPageGetOblogsResponse,
+                                  getJsonField(detailPageGetDirReportsResponse,
                                           r'''$..oblogs.0.location''')
                                       .toString(),
                                   style: FlutterFlowTheme.bodyText1.override(
@@ -239,7 +240,8 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
                                   child: Text(
-                                    getJsonField(detailPageGetOblogsResponse,
+                                    getJsonField(
+                                            detailPageGetDirReportsResponse,
                                             r'''$..oblogs.0.comment''')
                                         .toString(),
                                     textAlign: TextAlign.start,

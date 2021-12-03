@@ -1,12 +1,25 @@
 import 'api_manager.dart';
 
-Future<dynamic> getOblogsCall() {
+Future<dynamic> getDirReportsCall() {
   return ApiManager.instance.makeApiCall(
-    callName: 'GetOblogs',
-    apiUrl: 'http://9917-197-210-53-38.ngrok.io/api',
+    callName: 'GetDirReports',
+    apiUrl: 'https://nbd.bravetech.media/api/reports',
     callType: ApiCallType.GET,
     headers: {
-      'Authorization': 'Bearer 3|vqAVxUPUAztcZOVPbdzaUe7J16gNTrq3ScjJoQSH',
+      'Authorization': 'Bearer 66|t1RiW72NWsTYjCTT8gGGfY3hAQFz4HeiHeCakuWU',
+    },
+    params: {},
+    returnResponse: true,
+  );
+}
+
+Future<dynamic> getUserInfoCall() {
+  return ApiManager.instance.makeApiCall(
+    callName: 'GetUserInfo',
+    apiUrl: 'https://nbd.bravetech.media/api/',
+    callType: ApiCallType.GET,
+    headers: {
+      'Authorization': 'Bearer 1|MuOOaqcyT2ld8o1aKSnl7IJtADYZQat57Ul3yKa7',
     },
     params: {},
     returnResponse: true,
@@ -19,7 +32,7 @@ Future<dynamic> loginCall({
 }) {
   return ApiManager.instance.makeApiCall(
     callName: 'Login',
-    apiUrl: 'http://9917-197-210-53-38.ngrok.io/api/login',
+    apiUrl: 'https://nbd.bravetech.media/api/login',
     callType: ApiCallType.POST,
     headers: {},
     params: {
@@ -27,19 +40,6 @@ Future<dynamic> loginCall({
       'password': password,
     },
     bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
-    returnResponse: true,
-  );
-}
-
-Future<dynamic> getUserInfoCall() {
-  return ApiManager.instance.makeApiCall(
-    callName: 'GetUserInfo',
-    apiUrl: 'http://9917-197-210-53-38.ngrok.io/api/',
-    callType: ApiCallType.GET,
-    headers: {
-      'Authorization': 'Bearer 1|MuOOaqcyT2ld8o1aKSnl7IJtADYZQat57Ul3yKa7',
-    },
-    params: {},
     returnResponse: true,
   );
 }

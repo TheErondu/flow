@@ -1,5 +1,6 @@
 import '../backend/api_requests/api_calls.dart';
 import '../detail_page/detail_page_widget.dart';
+import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../login/login_widget.dart';
@@ -8,6 +9,7 @@ import '../reports_list_view/reports_list_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
@@ -691,7 +693,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 1,
+                  height: MediaQuery.of(context).size.height * 0.7,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -1122,11 +1124,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Image.asset(
-                                  'assets/images/login-bg.jpg',
-                                  width: double.infinity,
-                                  height: 120,
-                                  fit: BoxFit.cover,
+                                InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: FlutterFlowExpandedImageView(
+                                          image: Image.asset(
+                                            'assets/images/login-bg.jpg',
+                                            fit: BoxFit.contain,
+                                          ),
+                                          allowRotation: false,
+                                          tag: 'imageTag1',
+                                          useHeroAnimation: true,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Hero(
+                                    tag: 'imageTag1',
+                                    transitionOnUserGestures: true,
+                                    child: Image.asset(
+                                      'assets/images/login-bg.jpg',
+                                      width: double.infinity,
+                                      height: 120,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -1137,30 +1162,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Next show',
-                                              style: FlutterFlowTheme.bodyText1
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
+                                        child: SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Next show',
+                                                style: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                               ),
-                                            ),
-                                            Text(
-                                              getCurrentTimestamp.toString(),
-                                              style: FlutterFlowTheme.bodyText1
-                                                  .override(
-                                                fontFamily: 'Poppins',
-                                                color: FlutterFlowTheme
-                                                    .secondaryColor,
-                                              ),
-                                            )
-                                          ],
+                                              Text(
+                                                getCurrentTimestamp.toString(),
+                                                style: FlutterFlowTheme
+                                                    .bodyText1
+                                                    .override(
+                                                  fontFamily: 'Poppins',
+                                                  color: FlutterFlowTheme
+                                                      .secondaryColor,
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       Padding(

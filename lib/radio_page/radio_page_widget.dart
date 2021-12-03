@@ -130,7 +130,7 @@ class _RadioPageWidgetState extends State<RadioPageWidget> {
               audio: Audio.network(
                 'http://stream.radiojar.com/3by7s8eg65quv',
                 metas: Metas(
-                  id: '3by7s8eg65quv-tw8oq8mp',
+                  id: '3by7s8eg65quv-12ybgy4j',
                   title: 'Nation FM',
                 ),
               ),
