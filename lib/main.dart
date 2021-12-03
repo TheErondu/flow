@@ -69,7 +69,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.home_outlined,
               size: 24,
             ),
-            label: 'Live Radio',
+            label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
