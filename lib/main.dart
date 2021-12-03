@@ -1,15 +1,12 @@
-import 'package:brave/backend/api_requests/api_calls.dart';
-import 'package:brave/backend/api_requests/api_manager.dart';
-import 'package:brave/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'backend/api_requests/api_calls.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:brave/index/index_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'home_page/home_page_widget.dart';
 import 'list_view/list_view_widget.dart';
+import 'live_tv_page/live_tv_page_widget.dart';
+import 'radio_page/radio_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -36,7 +33,7 @@ class MyApp extends StatelessWidget {
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage, userAccesstoken}) : super(key: key);
+  NavBarPage({Key key, this.initialPage}) : super(key: key);
 
   final String initialPage;
 
@@ -59,6 +56,8 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePage': HomePageWidget(),
       'ListView': ListViewWidget(),
+      'LiveTvPage': LiveTvPageWidget(),
+      'RadioPage': RadioPageWidget(),
       'SettingsPage': SettingsPageWidget(),
     };
     return Scaffold(
@@ -79,6 +78,22 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'logs',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.live_tv,
+              size: 24,
+            ),
+            label: 'Live TV',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.radio_outlined,
+              size: 24,
+            ),
+            label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
