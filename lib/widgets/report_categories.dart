@@ -6,13 +6,9 @@ import 'package:brave/mcr_logs/index.dart';
 import 'package:brave/prod_show_logs/index.dart';
 import 'package:brave/prompter_log_news/index.dart';
 import 'package:brave/prompter_log_shows/index.dart';
-
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../login/login_widget.dart';
-import '../main.dart';
+import 'package:brave/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
-
+ 
 class ReportCategoriesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
