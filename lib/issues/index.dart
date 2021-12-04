@@ -10,9 +10,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ReportsListViewWidget extends StatefulWidget {
-  const ReportsListViewWidget({
-    Key key,
-  }) : super(key: key);
+  const ReportsListViewWidget({Key key, this.path}) : super(key: key);
+  final String path;
   @override
   _ReportsListViewWidgetState createState() => _ReportsListViewWidgetState();
 }
@@ -35,13 +34,6 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final path = ModalRoute.of(context).settings.arguments as ScreenArguments;
-    // if (widget.path == "DirReports") {
-    //   callType = "true";
-    // } else {
-    //   callType = getOblogsCall();
-    // }
-    print(path.name.toString());
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(

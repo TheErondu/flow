@@ -6,7 +6,7 @@ import '../live_tv_page/live_tv_page_widget.dart';
 import '../login/login_widget.dart';
 import '../main.dart';
 import '../radio_page/radio_page_widget.dart';
-import '../reports_list_view/reports_list_view_widget.dart';
+import '../dir_reports/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,12 +16,6 @@ class HomePageWidget extends StatefulWidget {
 
   @override
   _HomePageWidgetState createState() => _HomePageWidgetState();
-}
-
-class ScreenArguments {
-  final String name;
-
-  const ScreenArguments(this.name);
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
@@ -150,7 +144,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.80,
+                  height: MediaQuery.of(context).size.height * 0.75,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -224,15 +218,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           4, 4, 4, 4),
                                       child: InkWell(
                                         onTap: () async {
-                                           var name = "Reports";
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   ReportsListViewWidget(),
-                                                  
-                                              settings: RouteSettings(
-                                                  arguments: name),
                                             ),
                                           );
                                         },

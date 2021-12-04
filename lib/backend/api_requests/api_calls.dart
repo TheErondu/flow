@@ -2,7 +2,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'api_manager.dart';
 
-const apiUrl = "http://192.168.83.31:8001/api";
+const apiUrl = "http://192.168.20.89:8001/api";
 Future getToken() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var token = prefs.getString('token');

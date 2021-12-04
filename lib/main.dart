@@ -1,3 +1,4 @@
+import 'package:brave/widgets/drawer_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -61,6 +62,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'SettingsPage': SettingsPageWidget(),
     };
     return Scaffold(
+      drawer: DrawerWidget(),
       body: tabs[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
