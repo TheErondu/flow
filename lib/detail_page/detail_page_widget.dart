@@ -56,7 +56,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(15, 80, 15, 0),
                               child: Image.asset(
-                                'assets/images/ff_full_logo_light.png',
+                                'assets/images/login-bg.jpg',
                                 width: MediaQuery.of(context).size.width,
                                 height: 150,
                                 fit: BoxFit.fitWidth,
@@ -70,8 +70,8 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      Color(0xB3090F13),
-                                      Color(0x00090F13)
+                                      Color(0xFF13172C),
+                                      Color(0xFF0E0F0F)
                                     ],
                                     stops: [0, 1],
                                     begin: AlignmentDirectional(0, -1),
@@ -117,10 +117,10 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Internal Team',
+                                  'Log Details',
                                   style: FlutterFlowTheme.bodyText2.override(
                                     fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: Color(0xFF6F6C6C),
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -144,9 +144,13 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                 child: Text(
-                                  getJsonField(detailPageGetDirReportsResponse,
-                                          r'''$..oblogs.0.event_name''')
-                                      .toString(),
+                                  valueOrDefault<String>(
+                                    getJsonField(
+                                            detailPageGetDirReportsResponse,
+                                            r'''$..0.bulletin''')
+                                        .toString(),
+                                    'n/A',
+                                  ),
                                   style: FlutterFlowTheme.subtitle1.override(
                                     fontFamily: 'Poppins',
                                     color: Colors.white,
@@ -177,13 +181,13 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                   valueOrDefault<String>(
                                     getJsonField(
                                             detailPageGetDirReportsResponse,
-                                            r'''$..oblogs.0.event_date''')
+                                            r'''$..0.start''')
                                         .toString(),
                                     'date',
                                   ),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: Color(0xFF4B39EF),
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -201,9 +205,13 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  getJsonField(detailPageGetDirReportsResponse,
-                                          r'''$..oblogs.0.location''')
-                                      .toString(),
+                                  valueOrDefault<String>(
+                                    getJsonField(
+                                            detailPageGetDirReportsResponse,
+                                            r'''$..oblogs.0.location''')
+                                        .toString(),
+                                    'nil',
+                                  ),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
                                     color: FlutterFlowTheme.primaryColor,
@@ -223,7 +231,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Event Details',
+                                  'Comments',
                                   style: FlutterFlowTheme.bodyText2,
                                 ),
                               )
@@ -242,7 +250,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                   child: Text(
                                     getJsonField(
                                             detailPageGetDirReportsResponse,
-                                            r'''$..oblogs.0.comment''')
+                                            r'''$..0.comment''')
                                         .toString(),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
