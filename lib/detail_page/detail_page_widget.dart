@@ -20,34 +20,34 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<dynamic>(
-      future: getDirReportsCall(),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: SpinKitChasingDots(
-                color: Color(0xFFCCC9C9),
-                size: 50,
-              ),
-            ),
-          );
-        }
-        final detailPageGetDirReportsResponse = snapshot.data;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: Colors.black,
-          body: SingleChildScrollView(
-            child: Column(
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
+                FutureBuilder<dynamic>(
+                  future: getDirReportsCall(),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: SpinKitChasingDots(
+                            color: Color(0xFFCCC9C9),
+                            size: 50,
+                          ),
+                        ),
+                      );
+                    }
+                    final columnGetDirReportsResponse = snapshot.data;
+                    return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Stack(
@@ -145,10 +145,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    getJsonField(
-                                            detailPageGetDirReportsResponse,
-                                            r'''$..0.bulletin''')
-                                        .toString(),
+                                    'Name of Suite:${getJsonField(columnGetDirReportsResponse, r'''$''').toString()}',
                                     'n/A',
                                   ),
                                   style: FlutterFlowTheme.subtitle1.override(
@@ -170,7 +167,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
                                 child: Icon(
                                   Icons.schedule,
-                                  color: FlutterFlowTheme.primaryColor,
+                                  color: Color(0xFF94A2B1),
                                   size: 20,
                                 ),
                               ),
@@ -179,15 +176,14 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    getJsonField(
-                                            detailPageGetDirReportsResponse,
-                                            r'''$..0.start''')
+                                    getJsonField(columnGetDirReportsResponse,
+                                            r'''$.0.start''')
                                         .toString(),
                                     'date',
                                   ),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
-                                    color: Color(0xFF4B39EF),
+                                    color: Color(0xFFE7AD11),
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -197,7 +193,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 4),
                                 child: Icon(
                                   Icons.location_on_sharp,
-                                  color: FlutterFlowTheme.primaryColor,
+                                  color: Color(0xFF94A2B1),
                                   size: 20,
                                 ),
                               ),
@@ -206,15 +202,14 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    getJsonField(
-                                            detailPageGetDirReportsResponse,
-                                            r'''$..oblogs.0.location''')
+                                    getJsonField(columnGetDirReportsResponse,
+                                            r'''$''')
                                         .toString(),
                                     'nil',
                                   ),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: Color(0xFFE7AD11),
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -232,7 +227,10 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
                                   'Comments',
-                                  style: FlutterFlowTheme.bodyText2,
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                    color: Color(0xFFFBFBFB),
+                                  ),
                                 ),
                               )
                             ],
@@ -248,10 +246,12 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
                                   child: Text(
-                                    getJsonField(
-                                            detailPageGetDirReportsResponse,
-                                            r'''$..0.comment''')
-                                        .toString(),
+                                    valueOrDefault<String>(
+                                      getJsonField(columnGetDirReportsResponse,
+                                              r'''$.0.comment''')
+                                          .toString(),
+                                      'comment',
+                                    ),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Lexend Deca',
@@ -300,14 +300,14 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                           ),
                         )
                       ],
-                    )
-                  ],
+                    );
+                  },
                 )
               ],
-            ),
-          ),
-        );
-      },
+            )
+          ],
+        ),
+      ),
     );
   }
 }
