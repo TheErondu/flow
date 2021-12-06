@@ -2,11 +2,25 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'api_manager.dart';
 
-const apiUrl = "http://192.168.20.89:8001/api";
+const apiUrl = "https://nbd.bravetech.media/api";
 Future getToken() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var token = prefs.getString('token');
   return token;
+}
+
+Future<dynamic> authCheckCall() async {
+  var userToken = await getToken();
+  return ApiManager.instance.makeApiCall(
+    callName: 'authCheck',
+    apiUrl: '$apiUrl',
+    callType: ApiCallType.GET,
+    headers: {
+      'Authorization': 'Bearer $userToken',
+    },
+    params: {},
+    returnResponse: true,
+  );
 }
 
 Future<dynamic> loginCall(
@@ -38,10 +52,11 @@ Future<dynamic> getOblogsCall() async {
   );
 }
 
+
 Future<dynamic> getEditorLogsCall() async {
   var userToken = await getToken();
   return ApiManager.instance.makeApiCall(
-    callName: 'GetOblogs',
+    callName: 'GetEditorLogs',
     apiUrl: '$apiUrl/logs/editors',
     callType: ApiCallType.GET,
     headers: {
@@ -84,7 +99,7 @@ Future<dynamic> getProdLogsCall() async {
   var userToken = await getToken();
   return ApiManager.instance.makeApiCall(
     callName: 'GetProdLogs',
-    apiUrl: '$apiUrl/reports',
+    apiUrl: '$apiUrl/logs/production',
     callType: ApiCallType.GET,
     headers: {
       'Authorization': 'Bearer $userToken',

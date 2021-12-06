@@ -7,47 +7,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DetailPageWidget extends StatefulWidget {
-  const DetailPageWidget({Key key}) : super(key: key);
-
+class IssuesDetailpageWidget extends StatefulWidget {
+  const IssuesDetailpageWidget({Key key, this.index}) : super(key: key);
+  final int index;
   @override
-  _DetailPageWidgetState createState() => _DetailPageWidgetState();
+  _IssuesDetailpageWidgetState createState() =>
+      _IssuesDetailpageWidgetState();
 }
 
-class _DetailPageWidgetState extends State<DetailPageWidget> {
+class _IssuesDetailpageWidgetState
+    extends State<IssuesDetailpageWidget> {
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+   final getMyIssues = getMyIssuesCall();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<dynamic>(
-      future: getOblogsCall(),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: SpinKitChasingDots(
-                color: Color(0xFFCCC9C9),
-                size: 50,
-              ),
-            ),
-          );
-        }
-        final detailPageGetOblogsResponse = snapshot.data;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: Colors.black,
-          body: SingleChildScrollView(
-            child: Column(
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
+                FutureBuilder<dynamic>(
+                  future: getMyIssues,
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: SpinKitChasingDots(
+                            color: Color(0xFFCCC9C9),
+                            size: 50,
+                          ),
+                        ),
+                      );
+                    }
+                   final data = snapshot.data;
+        final iD = widget.index;
+                    return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Stack(
@@ -56,7 +60,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(15, 80, 15, 0),
                               child: Image.asset(
-                                'assets/images/ff_full_logo_light.png',
+                                'assets/images/login-bg.jpg',
                                 width: MediaQuery.of(context).size.width,
                                 height: 150,
                                 fit: BoxFit.fitWidth,
@@ -70,8 +74,8 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      Color(0xB3090F13),
-                                      Color(0x00090F13)
+                                      Color(0xFF13172C),
+                                      Color(0xFF0E0F0F)
                                     ],
                                     stops: [0, 1],
                                     begin: AlignmentDirectional(0, -1),
@@ -117,10 +121,10 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Internal Team',
+                                  'issue Details',
                                   style: FlutterFlowTheme.bodyText2.override(
                                     fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: Color(0xFF6F6C6C),
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -143,9 +147,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Text(
-                                  getJsonField(detailPageGetOblogsResponse,
-                                          r'''$..oblogs.0.event_name''')
+                                child: Text(data['issues'][iD]['item_name']
                                       .toString(),
                                   style: FlutterFlowTheme.subtitle1.override(
                                     fontFamily: 'Poppins',
@@ -173,16 +175,11 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    getJsonField(detailPageGetOblogsResponse,
-                                            r'''$..oblogs.0.event_date''')
-                                        .toString(),
-                                    'date',
-                                  ),
+                                child: Text(data['issues'][iD]['date']
+                                      .toString(),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: Color(0xFF4B39EF),
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -199,9 +196,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(
-                                  getJsonField(detailPageGetOblogsResponse,
-                                          r'''$..oblogs.0.location''')
+                                child: Text(data['issues'][iD]['id']
                                       .toString(),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
@@ -222,7 +217,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Event Details',
+                                  'Comments',
                                   style: FlutterFlowTheme.bodyText2,
                                 ),
                               )
@@ -238,10 +233,8 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
-                                  child: Text(
-                                    getJsonField(detailPageGetOblogsResponse,
-                                            r'''$..oblogs.0.comment''')
-                                        .toString(),
+                                  child: Text(data['issues'][iD]['description']
+                                      .toString(),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Lexend Deca',
@@ -290,14 +283,14 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                           ),
                         )
                       ],
-                    )
-                  ],
+                    );
+                  },
                 )
               ],
-            ),
-          ),
-        );
-      },
+            )
+          ],
+        ),
+      ),
     );
   }
 }

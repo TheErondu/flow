@@ -1,5 +1,7 @@
+import 'package:brave/issues/index.dart';
+import 'package:brave/prod_show_logs/index.dart';
+
 import '../backend/api_requests/api_calls.dart';
-import '../detail_page/detail_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../live_tv_page/live_tv_page_widget.dart';
@@ -275,13 +277,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           4, 4, 4, 4),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.pushAndRemoveUntil(
+                                          await Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  ReportsListViewWidget(),
+                                                  ProdLogsWidget(),
                                             ),
-                                            (r) => false,
                                           );
                                         },
                                         child: Column(
@@ -334,13 +335,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           4, 4, 4, 4),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.pushAndRemoveUntil(
+                                          await Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  ReportsListViewWidget(),
+                                                  IssuesListWidget(),
                                             ),
-                                            (r) => false,
                                           );
                                         },
                                         child: Column(
@@ -460,13 +460,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           4, 4, 4, 4),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.pushAndRemoveUntil(
+                                          await Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) => NavBarPage(
                                                   initialPage: 'RadioPage'),
                                             ),
-                                            (r) => false,
                                           );
                                         },
                                         child: Column(
@@ -518,13 +517,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           4, 4, 4, 4),
                                       child: InkWell(
                                         onTap: () async {
-                                          await Navigator.pushAndRemoveUntil(
+                                          await Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) => NavBarPage(
                                                   initialPage: 'SettingsPage'),
                                             ),
-                                            (r) => false,
                                           );
                                         },
                                         child: Column(

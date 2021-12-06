@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:brave/backend/api_requests/api_calls.dart';
 import 'package:brave/home_page/home_page_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -22,6 +25,17 @@ class _IndexWidgetState extends State<IndexWidget> {
   PageController pageViewController;
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  dynamic check;
+
+  // Future<Null> authCheck() async {
+  //   try {
+  //     check = await authCheckCall();
+  //     var res = HttpResponse;
+  //     print(res);
+  //   } finally {
+
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +199,7 @@ class _IndexWidgetState extends State<IndexWidget> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          'Buy and view all your favorite books you find in this library.',
+                                          'Track and Monitor Production Activities',
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.subtitle2
                                               .override(
@@ -256,7 +270,7 @@ class _IndexWidgetState extends State<IndexWidget> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          'Keep track of all your purchases that you have made, want to trade books in? Go ahead and list them for exchange.',
+                                          'Watch Live TV or Listen to Live Radio',
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.subtitle2
                                               .override(
@@ -322,16 +336,10 @@ class _IndexWidgetState extends State<IndexWidget> {
                     onPressed: () async {
                       setState(() => _loadingButton = true);
                       try {
-                        SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        var token = prefs.getString('token');
-                        if (token == null) {
-                          await Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => LoginWidget(),
-                            ),
-                          );
-                        } else {
+                        check = await authCheckCall();
+                        var response = check['message'].toString();
+
+                        if (response == "authenticated") {
                           await Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: (context) => NavBarPage(
@@ -339,10 +347,58 @@ class _IndexWidgetState extends State<IndexWidget> {
                               ),
                             ),
                           );
+                        } else {
+                          await Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => LoginWidget(),
+                            ),
+                          );
                         }
-                      } finally {
+                      } on SocketException catch (e) {
+                        // Display an alert, no internet
+                        print('No Internet or Server Down');
+                         showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: Text('Error contacting Brave Server!'),
+                                content: Text(
+                                    "No internet or Server is Down : Check your internet settings."),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
+
+                                    child: const Text('Ok'),
+                                    ),
+                                ],
+                              ),
+                            );
+                      }
+                      finally {
                         setState(() => _loadingButton = false);
                       }
+                      // try {
+                      //   SharedPreferences prefs =
+                      //       await SharedPreferences.getInstance();
+                      //   var token = prefs.getString('token');
+                      //   if (token == null) {
+                      //     await Navigator.of(context).pushReplacement(
+                      //       MaterialPageRoute(
+                      //         builder: (context) => LoginWidget(),
+                      //       ),
+                      //     );
+                      //   } else {
+                      //     await Navigator.of(context).pushReplacement(
+                      //       MaterialPageRoute(
+                      //         builder: (context) => NavBarPage(
+                      //           initialPage: 'HomePage',
+                      //         ),
+                      //       ),
+                      //     );
+                      //   }
+                      // } finally {
+                      //   setState(() => _loadingButton = false);
+                      // }
                     },
                     text: 'Continue',
                     options: FFButtonOptions(

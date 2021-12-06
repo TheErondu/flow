@@ -1,7 +1,9 @@
+import 'package:brave/editor_logs/detail.dart';
+import 'package:brave/graphics_logs_shows/detail.dart';
 import 'package:brave/widgets/report_categories.dart';
 
 import '../backend/api_requests/api_calls.dart';
-import '../detail_page/detail_page_widget.dart';
+import '../graphics_logs_news/detail.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -18,7 +20,7 @@ class GraphicsLogShowsWidget extends StatefulWidget {
 }
 
 class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
-   Future<dynamic> getGraphicsLogShows;
+  Future<dynamic> getGraphicsLogShows;
   TextEditingController searchFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -28,6 +30,7 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
     searchFieldController = TextEditingController();
     getGraphicsLogShows = getGraphicsLogShowsCall();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +101,7 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
                 ],
               ),
               FutureBuilder<dynamic>(
-                future: getDirReportsCall(),
+                future: getGraphicsLogShows,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -113,12 +116,11 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
                       ),
                     );
                   }
-                  final columnGetDirReportsResponse = snapshot.data;
+                  final res = snapshot.data;
                   return Builder(
                     builder: (context) {
                       final reportsList =
-                          getJsonField(columnGetDirReportsResponse, r'''$''')
-                                  ?.toList() ??
+                          getJsonField(res, r'''$..graphics_log_shows''')?.toList() ??
                               [];
                       if (reportsList.isEmpty) {
                         return Center(
@@ -135,18 +137,12 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
                               (reportsListIndex) {
                             final reportsListItem =
                                 reportsList[reportsListIndex];
+                                var i = reportsListIndex;
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 0, 3),
                               child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailPageWidget(),
-                                    ),
-                                  );
-                                },
+
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -163,7 +159,7 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  DetailPageWidget(),
+                                                  GraphicsLogShowsDetailPageWidget(index: i,),
                                             ),
                                           );
                                         },
@@ -202,7 +198,7 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
                                                         AutoSizeText(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..bulletin''')
+                                                                  r'''$..segment''')
                                                               .toString()
                                                               .maybeHandleOverflow(
                                                                 maxChars: 25,
@@ -231,7 +227,7 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..comment''')
+                                                                  r'''$..challenges''') ?? '--'
                                                               .toString()
                                                               .maybeHandleOverflow(
                                                                 maxChars: 35,
@@ -261,7 +257,7 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..start''')
+                                                                  r'''$..created_at''') ?? 'date'
                                                               .toString(),
                                                           style:
                                                               FlutterFlowTheme

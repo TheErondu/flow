@@ -7,16 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DetailPageWidget extends StatefulWidget {
-  const DetailPageWidget({Key key}) : super(key: key);
+class DirLogsDetailPageWidget extends StatefulWidget {
+  const DirLogsDetailPageWidget({Key key, this.index}) : super(key: key);
+  final int index;
 
   @override
-  _DetailPageWidgetState createState() => _DetailPageWidgetState();
+  _DirLogsDetailPageWidgetState createState() =>
+      _DirLogsDetailPageWidgetState();
 }
 
-class _DetailPageWidgetState extends State<DetailPageWidget> {
+class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final getDirReport = getDirReportsCall();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 FutureBuilder<dynamic>(
-                  future: getDirReportsCall(),
+                  future: getDirReport,
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -46,7 +49,8 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                         ),
                       );
                     }
-                    final columnGetDirReportsResponse = snapshot.data;
+                    final data = snapshot.data;
+                    final iD = widget.index;
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -143,13 +147,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    getJsonField(columnGetDirReportsResponse,
-                                            r'''$.0.bulletin''')
-                                        .toString(),
-                                    'n/A',
-                                  ),
+                                child: Text( data[iD]['bulletin'].toString(),
                                   style: FlutterFlowTheme.subtitle1.override(
                                     fontFamily: 'Poppins',
                                     color: Colors.white,
@@ -177,12 +175,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  valueOrDefault<String>(
-                                    getJsonField(columnGetDirReportsResponse,
-                                            r'''$.0.start''')
-                                        .toString(),
-                                    'date',
-                                  ),
+                                  data[iD]['start'].toString(),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
                                     color: Color(0xFF4B39EF),
@@ -203,12 +196,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  valueOrDefault<String>(
-                                    getJsonField(columnGetDirReportsResponse,
-                                            r'''$''')
-                                        .toString(),
-                                    'nil',
-                                  ),
+                                  data[iD]['id'].toString(),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
                                     color: FlutterFlowTheme.primaryColor,
@@ -244,13 +232,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      getJsonField(columnGetDirReportsResponse,
-                                              r'''$.0.comment''')
-                                          .toString(),
-                                      'comment',
-                                    ),
+                                  child: Text( data[iD]['comment'].toString(),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Lexend Deca',
