@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter: Attach",
+            "type": "dart",
+            "request": "attach"
+        },
+        {
+            "name": "Flutter",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}
