@@ -1,7 +1,8 @@
+import 'package:brave/editor_logs/detail.dart';
 import 'package:brave/widgets/report_categories.dart';
 
 import '../backend/api_requests/api_calls.dart';
-import '../detail_page/detail_page_widget.dart';
+import '../editor_logs/detail.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -14,11 +15,12 @@ class EditorLogsListViewWidget extends StatefulWidget {
   const EditorLogsListViewWidget({Key key}) : super(key: key);
 
   @override
-  _EditorLogsListViewWidgetState createState() => _EditorLogsListViewWidgetState();
+  _EditorLogsListViewWidgetState createState() =>
+      _EditorLogsListViewWidgetState();
 }
 
 class _EditorLogsListViewWidgetState extends State<EditorLogsListViewWidget> {
-   Future<dynamic> getEditorLogs;
+  Future<dynamic> getEditorLogs;
   TextEditingController searchFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -96,7 +98,7 @@ class _EditorLogsListViewWidgetState extends State<EditorLogsListViewWidget> {
                 ],
               ),
               FutureBuilder<dynamic>(
-                future: getDirReportsCall(),
+                future: getEditorLogs,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -114,10 +116,11 @@ class _EditorLogsListViewWidgetState extends State<EditorLogsListViewWidget> {
                   final columnGetDirReportsResponse = snapshot.data;
                   return Builder(
                     builder: (context) {
-                      final reportsList =
-                          getJsonField(columnGetDirReportsResponse, r'''$''')
-                                  ?.toList() ??
-                              [];
+                      final reportsList = getJsonField(
+                                  columnGetDirReportsResponse,
+                                  r'''$..editors_logs''')
+                              ?.toList() ??
+                          [];
                       if (reportsList.isEmpty) {
                         return Center(
                           child: Image.asset(
@@ -133,18 +136,11 @@ class _EditorLogsListViewWidgetState extends State<EditorLogsListViewWidget> {
                               (reportsListIndex) {
                             final reportsListItem =
                                 reportsList[reportsListIndex];
+                           var i = reportsListIndex;
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 0, 3),
                               child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailPageWidget(),
-                                    ),
-                                  );
-                                },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -161,7 +157,7 @@ class _EditorLogsListViewWidgetState extends State<EditorLogsListViewWidget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  DetailPageWidget(),
+                                                  EditorLogsDetailPageWidget(index: i),
                                             ),
                                           );
                                         },
@@ -200,7 +196,7 @@ class _EditorLogsListViewWidgetState extends State<EditorLogsListViewWidget> {
                                                         AutoSizeText(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..bulletin''')
+                                                                  r'''$..name_of_suite''')
                                                               .toString()
                                                               .maybeHandleOverflow(
                                                                 maxChars: 25,
@@ -229,7 +225,7 @@ class _EditorLogsListViewWidgetState extends State<EditorLogsListViewWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..comment''')
+                                                                  r'''$..first_interval''')
                                                               .toString()
                                                               .maybeHandleOverflow(
                                                                 maxChars: 35,
@@ -259,7 +255,7 @@ class _EditorLogsListViewWidgetState extends State<EditorLogsListViewWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..start''')
+                                                                  r'''$..date''')
                                                               .toString(),
                                                           style:
                                                               FlutterFlowTheme

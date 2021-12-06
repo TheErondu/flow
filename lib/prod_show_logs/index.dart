@@ -1,14 +1,12 @@
-import 'package:brave/widgets/report_categories.dart';
 
+import 'package:brave/prod_show_logs/detail.dart';
+import 'package:brave/widgets/report_categories.dart';
 import '../backend/api_requests/api_calls.dart';
-import '../detail_page/detail_page_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProdLogsWidget extends StatefulWidget {
   const ProdLogsWidget({Key key}) : super(key: key);
@@ -18,7 +16,7 @@ class ProdLogsWidget extends StatefulWidget {
 }
 
 class _ProdLogsWidgetState extends State<ProdLogsWidget> {
-   Future<dynamic> getProdLogs;
+  Future<dynamic> getProdLogs;
   TextEditingController searchFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -37,7 +35,7 @@ class _ProdLogsWidgetState extends State<ProdLogsWidget> {
         backgroundColor: Color(0xFF090F13),
         automaticallyImplyLeading: true,
         title: Text(
-          'Production Logs',
+          'Prod. Show Logs',
           style: FlutterFlowTheme.title1.override(
             fontFamily: 'Lexend Deca',
             color: Colors.white,
@@ -98,7 +96,7 @@ class _ProdLogsWidgetState extends State<ProdLogsWidget> {
                 ],
               ),
               FutureBuilder<dynamic>(
-                future: getDirReportsCall(),
+                future: getProdLogs,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -113,12 +111,11 @@ class _ProdLogsWidgetState extends State<ProdLogsWidget> {
                       ),
                     );
                   }
-                  final columnGetDirReportsResponse = snapshot.data;
+                  final res = snapshot.data;
                   return Builder(
                     builder: (context) {
                       final reportsList =
-                          getJsonField(columnGetDirReportsResponse, r'''$''')
-                                  ?.toList() ??
+                          getJsonField(res, r'''$..production_show_logs''')?.toList() ??
                               [];
                       if (reportsList.isEmpty) {
                         return Center(
@@ -135,18 +132,12 @@ class _ProdLogsWidgetState extends State<ProdLogsWidget> {
                               (reportsListIndex) {
                             final reportsListItem =
                                 reportsList[reportsListIndex];
+                                var i = reportsListIndex;
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 0, 3),
                               child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailPageWidget(),
-                                    ),
-                                  );
-                                },
+
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -163,7 +154,7 @@ class _ProdLogsWidgetState extends State<ProdLogsWidget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  DetailPageWidget(),
+                                                  ProdLogsDetailPageWidget(index: i,),
                                             ),
                                           );
                                         },
@@ -202,7 +193,7 @@ class _ProdLogsWidgetState extends State<ProdLogsWidget> {
                                                         AutoSizeText(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..bulletin''')
+                                                                  r'''$..show_name''')
                                                               .toString()
                                                               .maybeHandleOverflow(
                                                                 maxChars: 25,
@@ -234,7 +225,7 @@ class _ProdLogsWidgetState extends State<ProdLogsWidget> {
                                                                   r'''$..comment''')
                                                               .toString()
                                                               .maybeHandleOverflow(
-                                                                maxChars: 35,
+                                                                maxChars: 28,
                                                                 replacement:
                                                                     '…',
                                                               ),
@@ -261,7 +252,7 @@ class _ProdLogsWidgetState extends State<ProdLogsWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..start''')
+                                                                  r'''$..date''') ?? 'date'
                                                               .toString(),
                                                           style:
                                                               FlutterFlowTheme

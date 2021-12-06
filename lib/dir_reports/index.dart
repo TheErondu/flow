@@ -1,7 +1,7 @@
 import 'package:brave/widgets/report_categories.dart';
 
 import '../backend/api_requests/api_calls.dart';
-import '../detail_page/detail_page_widget.dart';
+import '../dir_reports/detail.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -98,7 +98,7 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                 ],
               ),
               FutureBuilder<dynamic>(
-                future: getDirReportsCall(),
+                future: getDirReports,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -135,18 +135,11 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                               (reportsListIndex) {
                             final reportsListItem =
                                 reportsList[reportsListIndex];
+                                 var i = reportsListIndex;
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 0, 3),
                               child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailPageWidget(),
-                                    ),
-                                  );
-                                },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -163,7 +156,7 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  DetailPageWidget(),
+                                                  DirLogsDetailPageWidget(index: i),
                                             ),
                                           );
                                         },

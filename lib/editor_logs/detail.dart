@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -7,21 +9,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DetailPageWidget extends StatefulWidget {
-  const DetailPageWidget({Key key}) : super(key: key);
+class EditorLogsDetailPageWidget extends StatefulWidget {
+  const EditorLogsDetailPageWidget({Key key, this.index}) : super(key: key);
+
+  final int index;
 
   @override
-  _DetailPageWidgetState createState() => _DetailPageWidgetState();
+  _EditorLogsDetailPageWidgetState createState() =>
+      _EditorLogsDetailPageWidgetState();
 }
 
-class _DetailPageWidgetState extends State<DetailPageWidget> {
+class _EditorLogsDetailPageWidgetState
+    extends State<EditorLogsDetailPageWidget> {
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final getEditorLogs = getEditorLogsCall();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<dynamic>(
-      future: getOblogsCall(),
+      future: getEditorLogs,
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -36,7 +43,8 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
             ),
           );
         }
-        final detailPageGetOblogsResponse = snapshot.data;
+        final data = snapshot.data;
+        final iD = widget.index;
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: Colors.black,
@@ -56,7 +64,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(15, 80, 15, 0),
                               child: Image.asset(
-                                'assets/images/ff_full_logo_light.png',
+                                'assets/images/login-bg.jpg',
                                 width: MediaQuery.of(context).size.width,
                                 height: 150,
                                 fit: BoxFit.fitWidth,
@@ -117,10 +125,10 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Internal Team',
+                                  'Name of Suite : ',
                                   style: FlutterFlowTheme.bodyText2.override(
                                     fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: Colors.blueAccent,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -144,8 +152,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                 child: Text(
-                                  getJsonField(detailPageGetOblogsResponse,
-                                          r'''$..oblogs.0.event_name''')
+                                  data['editors_logs'][iD]['name_of_suite']
                                       .toString(),
                                   style: FlutterFlowTheme.subtitle1.override(
                                     fontFamily: 'Poppins',
@@ -174,15 +181,10 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  valueOrDefault<String>(
-                                    getJsonField(detailPageGetOblogsResponse,
-                                            r'''$..oblogs.0.event_date''')
-                                        .toString(),
-                                    'date',
-                                  ),
+                                  data['editors_logs'][iD]['date'].toString(),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.tertiaryColor,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -191,7 +193,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 4),
                                 child: Icon(
-                                  Icons.location_on_sharp,
+                                  Icons.drag_indicator_sharp,
                                   color: FlutterFlowTheme.primaryColor,
                                   size: 20,
                                 ),
@@ -200,12 +202,10 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  getJsonField(detailPageGetOblogsResponse,
-                                          r'''$..oblogs.0.location''')
-                                      .toString(),
+                                  data['editors_logs'][iD]['id'].toString(),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
+                                    color: FlutterFlowTheme.tertiaryColor,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -222,8 +222,11 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Event Details',
-                                  style: FlutterFlowTheme.bodyText2,
+                                  'First Interval',
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.blueAccent,
+                                    fontWeight: FontWeight.w500),
                                 ),
                               )
                             ],
@@ -239,8 +242,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
                                   child: Text(
-                                    getJsonField(detailPageGetOblogsResponse,
-                                            r'''$..oblogs.0.comment''')
+                                    data['editors_logs'][iD]['first_interval']
                                         .toString(),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
@@ -253,6 +255,91 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
+                                child: Text(
+                                  'Second Interval',
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.blueAccent,
+                                    fontWeight: FontWeight.w500),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 4),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 4, 0, 4),
+                                  child: Text(
+                                    data['editors_logs'][iD]['second_interval']
+                                        .toString(),
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.getFont(
+                                      'Lexend Deca',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
+                                child: Text(
+                                  'Third Interval',
+                                  style: FlutterFlowTheme.bodyText2.override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.blueAccent,
+                                    fontWeight: FontWeight.w500),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 4),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 4, 0, 4),
+                                  child: Text(
+                                    data['editors_logs'][iD]['third_interval']
+                                        .toString(),
+                                    textAlign: TextAlign.start,
+                                    style: GoogleFonts.getFont(
+                                      'Lexend Deca',
+                                      color: FlutterFlowTheme.tertiaryColor,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 40),
                           child: FFButtonWidget(

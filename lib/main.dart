@@ -1,15 +1,13 @@
+
 import 'package:brave/widgets/drawer_widget.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:brave/index/index_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'home_page/home_page_widget.dart';
-import 'list_view/list_view_widget.dart';
 import 'live_tv_page/live_tv_page_widget.dart';
 import 'radio_page/radio_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void main() {
   runApp(MyApp());
@@ -56,7 +54,6 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'HomePage': HomePageWidget(),
-      'ListView': ListViewWidget(),
       'LiveTvPage': LiveTvPageWidget(),
       'RadioPage': RadioPageWidget(),
       'SettingsPage': SettingsPageWidget(),
@@ -76,14 +73,6 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.format_list_bulleted,
-              size: 24,
-            ),
-            label: 'logs',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
               Icons.live_tv,
               size: 24,
             ),
@@ -95,7 +84,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.radio_outlined,
               size: 24,
             ),
-            label: 'Home',
+            label: 'Radio',
             tooltip: '',
           ),
           BottomNavigationBarItem(

@@ -174,7 +174,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   setState(() => _loadingButton = false);
                 }
               },
-              text: 'Change Changes',
+              text: 'Save Changes',
               options: FFButtonOptions(
                 width: 190,
                 height: 50,

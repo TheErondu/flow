@@ -1,35 +1,32 @@
-import 'package:brave/home_page/home_page_widget.dart';
+
+import 'package:brave/widgets/issue_categories.dart';
+import 'package:brave/widgets/report_categories.dart';
 
 import '../backend/api_requests/api_calls.dart';
+import '../issues/detail.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class ReportsListViewWidget extends StatefulWidget {
-  const ReportsListViewWidget({Key key, this.path}) : super(key: key);
-  final String path;
+class IssuesListWidget extends StatefulWidget {
+  const IssuesListWidget({Key key}) : super(key: key);
+
   @override
-  _ReportsListViewWidgetState createState() => _ReportsListViewWidgetState();
+  _IssuesListWidgetState createState() => _IssuesListWidgetState();
 }
 
-class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
+class _IssuesListWidgetState extends State<IssuesListWidget> {
+  Future<dynamic> getMyIssues;
   TextEditingController searchFieldController;
-  bool _loadingButton1 = false;
-  bool _loadingButton2 = false;
-  bool _loadingButton3 = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  dynamic callType;
-
-  _ReportsListViewWidgetState();
 
   @override
   void initState() {
     super.initState();
     searchFieldController = TextEditingController();
+    getMyIssues = getMyIssuesCall();
   }
 
   @override
@@ -38,9 +35,9 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color(0xFF090F13),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         title: Text(
-          'Classes',
+          'Issues',
           style: FlutterFlowTheme.title1.override(
             fontFamily: 'Lexend Deca',
             color: Colors.white,
@@ -58,379 +55,50 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Row(
+              Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Material(
-                    color: Colors.transparent,
-                    elevation: 3,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF090F13),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
-                        child: TextFormField(
-                          controller: searchFieldController,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Search for classes...',
-                            labelStyle: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Color(0xFF95A1AC),
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            hintText: 'Search by name, location etc...',
-                            hintStyle: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Lexend Deca',
-                              color: Color(0xFF95A1AC),
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFF262D34),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xFF262D34),
-                                width: 2,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            prefixIcon: Icon(
-                              Icons.search_rounded,
-                              color: Color(0xFF95A1AC),
-                            ),
-                          ),
-                          style: FlutterFlowTheme.bodyText1.override(
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          'Issue Categories',
+                          style: FlutterFlowTheme.bodyText2.override(
                             fontFamily: 'Lexend Deca',
-                            color: Color(0xFF95A1AC),
+                            color: Color(0xFF8B97A2),
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
                           ),
-                        ),
-                      ),
+                        )
+                      ],
+                    ),
+                  ),
+                  //Categories Widget
+                  IssueCategoriesWidget(),
+                  //
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 8),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          'List View',
+                          style: FlutterFlowTheme.bodyText2.override(
+                            fontFamily: 'Lexend Deca',
+                            color: Color(0xFF8B97A2),
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        )
+                      ],
                     ),
                   )
                 ],
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Workout Categories',
-                      style: FlutterFlowTheme.bodyText2.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF8B97A2),
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 1, 0),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                        child: Material(
-                          color: Colors.transparent,
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF090F13),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: InkWell(
-                              onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        ReportsListViewWidget(),
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: 48,
-                                    height: 48,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF262D34),
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Icon(
-                                      Icons.list_alt_sharp,
-                                      color: Colors.white,
-                                      size: 32,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
-                                    child: Text(
-                                      'Directors Report',
-                                      textAlign: TextAlign.center,
-                                      style:
-                                          FlutterFlowTheme.bodyText2.override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF8B97A2),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: Material(
-                          color: Colors.transparent,
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF090F13),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 48,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF262D34),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    Icons.sports_kabaddi,
-                                    color: Colors.white,
-                                    size: 32,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 8, 0, 0),
-                                  child: Text(
-                                    'Karate',
-                                    style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF8B97A2),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: Material(
-                          color: Colors.transparent,
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF090F13),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 48,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF262D34),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    Icons.fitness_center_rounded,
-                                    color: Colors.white,
-                                    size: 32,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 8, 0, 0),
-                                  child: Text(
-                                    'Weightroom',
-                                    style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF8B97A2),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                        child: Material(
-                          color: Colors.transparent,
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF090F13),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 48,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF262D34),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    Icons.directions_bike,
-                                    color: Colors.white,
-                                    size: 32,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 8, 0, 0),
-                                  child: Text(
-                                    'Cycling',
-                                    style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF8B97A2),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 12, 0),
-                        child: Material(
-                          color: Colors.transparent,
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFF090F13),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 48,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF262D34),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(
-                                    Icons.directions_run_rounded,
-                                    color: Colors.white,
-                                    size: 32,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 8, 0, 0),
-                                  child: Text(
-                                    'Running',
-                                    style: FlutterFlowTheme.bodyText2.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF8B97A2),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 8),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Upcoming Classes',
-                      style: FlutterFlowTheme.bodyText2.override(
-                        fontFamily: 'Lexend Deca',
-                        color: Color(0xFF8B97A2),
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    )
-                  ],
-                ),
-              ),
               FutureBuilder<dynamic>(
-                future: getOblogsCall(),
+                future: getMyIssues,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -445,165 +113,192 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                       ),
                     );
                   }
-                  final columnClassesGetOblogsResponse = snapshot.data;
+                  final res = snapshot.data;
                   return Builder(
                     builder: (context) {
-                      final getReportsList = getJsonField(
-                                  columnClassesGetOblogsResponse,
-                                  r'''$..oblogs''')
-                              ?.toList() ??
-                          [];
+                      final reportsList =
+                          getJsonField(res, r'''$..issues''')?.toList() ??
+                              [];
+                      if (reportsList.isEmpty) {
+                        return Center(
+                          child: Image.asset(
+                            'assets/images/No_Data_Found.png',
+                            fit: BoxFit.scaleDown,
+                          ),
+                        );
+                      }
                       return SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          children: List.generate(getReportsList.length,
-                              (getReportsListIndex) {
-                            final getReportsListItem =
-                                getReportsList[getReportsListIndex];
+                          children: List.generate(reportsList.length,
+                              (reportsListIndex) {
+                            final reportsListItem =
+                                reportsList[reportsListIndex];
+                                var i = reportsListIndex;
                             return Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF090F13),
-                                  image: DecorationImage(
-                                    fit: BoxFit.fitWidth,
-                                    image: Image.asset(
-                                      'assets/images/john-arano-h4i9G-de7Po-unsplash.jpg',
-                                    ).image,
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 3,
-                                      color: Color(0x33000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 120, 0, 0),
-                                  child: Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF090F13),
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(8),
-                                        bottomRight: Radius.circular(8),
-                                        topLeft: Radius.circular(0),
-                                        topRight: Radius.circular(0),
+                                  EdgeInsetsDirectional.fromSTEB(0, 2, 0, 3),
+                              child: InkWell(
+
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 90,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF070D0F),
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16, 0, 16, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Expanded(
+                                      child: InkWell(
+                                        onTap: () async {
+                                          await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  IssuesDetailpageWidget(index: i,),
+                                            ),
+                                          );
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(20, 20, 20, 20),
+                                                  child: Icon(
+                                                    Icons
+                                                        .sticky_note_2_outlined,
+                                                    color: Color(0xFF6F6C6C),
+                                                    size: 40,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(8, 1, 0, 0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
-                                                    AutoSizeText(
-                                                      getJsonField(
-                                                              getReportsListItem,
-                                                              r'''$..event_name''')
-                                                          .toString()
-                                                          .maybeHandleOverflow(
-                                                            maxChars: 50,
-                                                            replacement: '…',
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        AutoSizeText(
+                                                          getJsonField(
+                                                                  reportsListItem,
+                                                                  r'''$..item_name''')
+                                                              .toString()
+                                                              .maybeHandleOverflow(
+                                                                maxChars: 25,
+                                                                replacement:
+                                                                    '…',
+                                                              ),
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .subtitle1
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: FlutterFlowTheme
+                                                                .tertiaryColor,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w500,
                                                           ),
-                                                      style: FlutterFlowTheme
-                                                          .title2
-                                                          .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
-                                                        color: Colors.white,
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
+                                                        )
+                                                      ],
                                                     ),
-                                                    Text(
-                                                      getJsonField(
-                                                              getReportsListItem,
-                                                              r'''$..comment''')
-                                                          .toString()
-                                                          .maybeHandleOverflow(
-                                                            maxChars: 25,
-                                                            replacement: '…',
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          getJsonField(
+                                                                  reportsListItem,
+                                                                  r'''$..description''')
+                                                              .toString()
+                                                              .maybeHandleOverflow(
+                                                                maxChars: 35,
+                                                                replacement:
+                                                                    '…',
+                                                              ),
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText2
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: Color(
+                                                                0xFF8B97A2),
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal,
                                                           ),
-                                                      style: FlutterFlowTheme
-                                                          .bodyText1
-                                                          .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
-                                                        color:
-                                                            Color(0xFF39D2C0),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          getJsonField(
+                                                                  reportsListItem,
+                                                                  r'''$..date''') ?? 'date'
+                                                              .toString(),
+                                                          style:
+                                                              FlutterFlowTheme
+                                                                  .bodyText1
+                                                                  .override(
+                                                            fontFamily:
+                                                                'Lexend Deca',
+                                                            color: Color(
+                                                                0xFF4B39EF),
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        )
+                                                      ],
                                                     )
                                                   ],
                                                 ),
                                               ),
-                                              Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Button-Reserve pressed ...');
-                                                    },
-                                                    text: 'View',
-                                                    icon: Icon(
+                                            ),
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 8, 0),
+                                                    child: Icon(
                                                       Icons
-                                                          .remove_red_eye_sharp,
-                                                      color: Colors.white,
-                                                      size: 15,
+                                                          .chevron_right_outlined,
+                                                      color: Color(0xFF95A1AC),
+                                                      size: 24,
                                                     ),
-                                                    options: FFButtonOptions(
-                                                      width: 120,
-                                                      height: 40,
-                                                      color: Color(0xFF39D2C0),
-                                                      textStyle:
-                                                          GoogleFonts.getFont(
-                                                        'Lexend Deca',
-                                                        color: Colors.white,
-                                                        fontSize: 14,
-                                                      ),
-                                                      elevation: 3,
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius: 8,
-                                                    ),
-                                                    loading: _loadingButton1,
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             );

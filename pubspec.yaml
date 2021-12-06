@@ -46,6 +46,7 @@ dependencies:
   audio_session: ^0.1.6+1
   streaming_radio_flutter_plugin: ^3.0.2
   assets_audio_player: 3.0.3+3
+  webviewx: ^0.1.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.1

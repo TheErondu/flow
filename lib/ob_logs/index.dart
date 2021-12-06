@@ -1,7 +1,7 @@
 import 'package:brave/widgets/report_categories.dart';
 
 import '../backend/api_requests/api_calls.dart';
-import '../detail_page/detail_page_widget.dart';
+import '../ob_logs/detail.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../main.dart';
@@ -98,7 +98,7 @@ class _OBLogsWidgetState extends State<OBLogsWidget> {
                 ],
               ),
               FutureBuilder<dynamic>(
-                future: getDirReportsCall(),
+                future: getOblogs,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -113,12 +113,11 @@ class _OBLogsWidgetState extends State<OBLogsWidget> {
                       ),
                     );
                   }
-                  final columnGetDirReportsResponse = snapshot.data;
+                  final res = snapshot.data;
                   return Builder(
                     builder: (context) {
                       final reportsList =
-                          getJsonField(columnGetDirReportsResponse, r'''$''')
-                                  ?.toList() ??
+                          getJsonField(res, r'''$..oblogs''')?.toList() ??
                               [];
                       if (reportsList.isEmpty) {
                         return Center(
@@ -135,18 +134,12 @@ class _OBLogsWidgetState extends State<OBLogsWidget> {
                               (reportsListIndex) {
                             final reportsListItem =
                                 reportsList[reportsListIndex];
+                                var i = reportsListIndex;
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 0, 3),
                               child: InkWell(
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailPageWidget(),
-                                    ),
-                                  );
-                                },
+
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -163,7 +156,7 @@ class _OBLogsWidgetState extends State<OBLogsWidget> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  DetailPageWidget(),
+                                                  OBLogsDetailPageWidget(index: i,),
                                             ),
                                           );
                                         },
@@ -202,7 +195,7 @@ class _OBLogsWidgetState extends State<OBLogsWidget> {
                                                         AutoSizeText(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..bulletin''')
+                                                                  r'''$..event_name''')
                                                               .toString()
                                                               .maybeHandleOverflow(
                                                                 maxChars: 25,
@@ -261,7 +254,7 @@ class _OBLogsWidgetState extends State<OBLogsWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..start''')
+                                                                  r'''$..created_at''') ?? 'date'
                                                               .toString(),
                                                           style:
                                                               FlutterFlowTheme
