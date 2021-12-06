@@ -17,7 +17,6 @@ class ListViewWidget extends StatefulWidget {
 
 class _ListViewWidgetState extends State<ListViewWidget> {
   TextEditingController textController;
-  bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -330,19 +329,13 @@ class _ListViewWidgetState extends State<ListViewWidget> {
               padding: EdgeInsetsDirectional.fromSTEB(0, 16, 16, 20),
               child: FFButtonWidget(
                 onPressed: () async {
-                  setState(() => _loadingButton = true);
-                  try {
-                    await Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            NavBarPage(initialPage: 'HomePage'),
-                      ),
-                      (r) => false,
-                    );
-                  } finally {
-                    setState(() => _loadingButton = false);
-                  }
+                  await Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NavBarPage(initialPage: 'HomePage'),
+                    ),
+                    (r) => false,
+                  );
                 },
                 text: 'Add log',
                 options: FFButtonOptions(
@@ -362,7 +355,6 @@ class _ListViewWidgetState extends State<ListViewWidget> {
                   ),
                   borderRadius: 8,
                 ),
-                loading: _loadingButton,
               ),
             ),
           )

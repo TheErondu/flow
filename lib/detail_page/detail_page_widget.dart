@@ -15,7 +15,6 @@ class DetailPageWidget extends StatefulWidget {
 }
 
 class _DetailPageWidgetState extends State<DetailPageWidget> {
-  bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -267,18 +266,13 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 40),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              setState(() => _loadingButton = true);
-                              try {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        NavBarPage(initialPage: 'HomePage'),
-                                  ),
-                                );
-                              } finally {
-                                setState(() => _loadingButton = false);
-                              }
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      NavBarPage(initialPage: 'HomePage'),
+                                ),
+                              );
                             },
                             text: 'Back to Home',
                             options: FFButtonOptions(
@@ -296,7 +290,6 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                               ),
                               borderRadius: 8,
                             ),
-                            loading: _loadingButton,
                           ),
                         )
                       ],

@@ -16,7 +16,6 @@ class IndexWidget extends StatefulWidget {
 
 class _IndexWidgetState extends State<IndexWidget> {
   PageController pageViewController;
-  bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -316,17 +315,12 @@ class _IndexWidgetState extends State<IndexWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      setState(() => _loadingButton = true);
-                      try {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginWidget(),
-                          ),
-                        );
-                      } finally {
-                        setState(() => _loadingButton = false);
-                      }
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginWidget(),
+                        ),
+                      );
                     },
                     text: 'Continue',
                     options: FFButtonOptions(
@@ -346,7 +340,6 @@ class _IndexWidgetState extends State<IndexWidget> {
                       ),
                       borderRadius: 8,
                     ),
-                    loading: _loadingButton,
                   ),
                 )
               ],

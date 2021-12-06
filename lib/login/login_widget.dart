@@ -18,7 +18,6 @@ class _LoginWidgetState extends State<LoginWidget> {
   TextEditingController textController1;
   TextEditingController textController2;
   bool passwordVisibility;
-  bool _loadingButton = false;
   dynamic accessToken;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -182,26 +181,21 @@ class _LoginWidgetState extends State<LoginWidget> {
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        setState(() => _loadingButton = true);
-                        try {
-                          accessToken = await loginCall(
-                            email: textController1.text,
-                            password: textController2.text,
+                        accessToken = await loginCall(
+                          email: textController1.text,
+                          password: textController2.text,
+                        );
+                        if (getJsonField(accessToken, r'''$''')) {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  NavBarPage(initialPage: 'HomePage'),
+                            ),
                           );
-                          if (getJsonField(accessToken, r'''$''')) {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    NavBarPage(initialPage: 'HomePage'),
-                              ),
-                            );
-                          }
-
-                          setState(() {});
-                        } finally {
-                          setState(() => _loadingButton = false);
                         }
+
+                        setState(() {});
                       },
                       text: 'Get Started',
                       options: FFButtonOptions(
@@ -219,7 +213,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         borderRadius: 30,
                       ),
-                      loading: _loadingButton,
                     )
                   ],
                 ),

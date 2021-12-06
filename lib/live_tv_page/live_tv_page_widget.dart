@@ -1,6 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_video_player.dart';
+import '../flutter_flow/flutter_flow_web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,15 +21,12 @@ class _LiveTvPageWidgetState extends State<LiveTvPageWidget> {
       key: scaffoldKey,
       backgroundColor: Color(0xFFF5F5F5),
       body: SafeArea(
-        child: FlutterFlowVideoPlayer(
-          path:
-              'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4',
-          videoType: VideoType.network,
-          autoPlay: false,
-          looping: true,
-          showControls: true,
-          allowFullScreen: true,
-          allowPlaybackSpeedMenu: false,
+        child: FlutterFlowWebView(
+          url:
+              'https://www.dailymotion.com/embed/video/x6shkab?autoPlay=1?rel=0&amp;showinfo=0',
+          bypass: false,
+          verticalScroll: false,
+          horizontalScroll: false,
         ),
       ),
     );

@@ -14,7 +14,6 @@ class SettingsPageWidget extends StatefulWidget {
 }
 
 class _SettingsPageWidgetState extends State<SettingsPageWidget> {
-  bool _loadingButton = false;
   bool switchListTileValue1;
   bool switchListTileValue2;
   bool switchListTileValue3;
@@ -167,12 +166,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
             child: FFButtonWidget(
               onPressed: () async {
-                setState(() => _loadingButton = true);
-                try {
-                  Navigator.pop(context);
-                } finally {
-                  setState(() => _loadingButton = false);
-                }
+                Navigator.pop(context);
               },
               text: 'Change Changes',
               options: FFButtonOptions(
@@ -192,7 +186,6 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 ),
                 borderRadius: 30,
               ),
-              loading: _loadingButton,
             ),
           )
         ],
