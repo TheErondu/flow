@@ -1,3 +1,5 @@
+import 'package:brave/main.dart';
+
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -37,7 +39,13 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             size: 24,
           ),
           onPressed: () async {
-            Navigator.pop(context);
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => NavBarPage(
+                  initialPage: 'HomePage',
+                ),
+              ),
+            );
           },
         ),
         title: Text(

@@ -1,20 +1,29 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'api_manager.dart';
+import '../../globals.dart' as globals;
 
 const apiUrl = "https://nbd.bravetech.media/api";
-Future getToken() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  var token = prefs.getString('token');
-  return token;
-}
 
 Future<dynamic> authCheckCall() async {
-  var userToken = await getToken();
+var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'authCheck',
     apiUrl: '$apiUrl',
     callType: ApiCallType.GET,
+    headers: {
+      'Authorization': 'Bearer $userToken',
+    },
+    params: {},
+    returnResponse: true,
+  );
+}
+
+Future<dynamic> logoutCall() async {
+var userToken = globals.box.read("token");
+  return ApiManager.instance.makeApiCall(
+    callName: 'authCheck',
+    apiUrl: '$apiUrl/logout',
+    callType: ApiCallType.POST,
     headers: {
       'Authorization': 'Bearer $userToken',
     },
@@ -39,7 +48,7 @@ Future<dynamic> loginCall(
 }
 
 Future<dynamic> getOblogsCall() async {
-  var userToken = await getToken();
+  var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'GetOblogs',
     apiUrl: '$apiUrl/oblogs',
@@ -52,9 +61,8 @@ Future<dynamic> getOblogsCall() async {
   );
 }
 
-
 Future<dynamic> getEditorLogsCall() async {
-  var userToken = await getToken();
+var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'GetEditorLogs',
     apiUrl: '$apiUrl/logs/editors',
@@ -68,7 +76,7 @@ Future<dynamic> getEditorLogsCall() async {
 }
 
 Future<dynamic> getMCRLogsCall() async {
-  var userToken = await getToken();
+var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'GetMCRlogs',
     apiUrl: '$apiUrl/logs/mcr',
@@ -81,9 +89,8 @@ Future<dynamic> getMCRLogsCall() async {
   );
 }
 
-
 Future<dynamic> getDirReportsCall() async {
-  var userToken = await getToken();
+var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'GetDirReports',
     apiUrl: '$apiUrl/reports',
@@ -95,8 +102,9 @@ Future<dynamic> getDirReportsCall() async {
     returnResponse: true,
   );
 }
+
 Future<dynamic> getProdLogsCall() async {
-  var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'GetProdLogs',
     apiUrl: '$apiUrl/logs/production',
@@ -110,7 +118,7 @@ Future<dynamic> getProdLogsCall() async {
 }
 
 Future<dynamic> getGraphicsLogsCall() async {
-  var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'getGraphicsLogs',
     apiUrl: '$apiUrl/logs/graphics-news',
@@ -124,7 +132,7 @@ Future<dynamic> getGraphicsLogsCall() async {
 }
 
 Future<dynamic> getGraphicsLogShowsCall() async {
-  var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'getGraphicsLogShows',
     apiUrl: '$apiUrl/logs/graphics-shows',
@@ -138,7 +146,7 @@ Future<dynamic> getGraphicsLogShowsCall() async {
 }
 
 Future<dynamic> getPrompterLogsCall() async {
-  var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'getPrompterLogs',
     apiUrl: '$apiUrl/logs/prompter-news',
@@ -152,7 +160,7 @@ Future<dynamic> getPrompterLogsCall() async {
 }
 
 Future<dynamic> getPrompterLogShowsCall() async {
-  var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'getGraphicsLogShows',
     apiUrl: '$apiUrl/logs/prompter-shows',
@@ -166,7 +174,7 @@ Future<dynamic> getPrompterLogShowsCall() async {
 }
 
 Future<dynamic> getStoreRequestsCall() async {
-  var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'getStoreRequests',
     apiUrl: '$apiUrl/logs/store-requests',
@@ -180,7 +188,7 @@ Future<dynamic> getStoreRequestsCall() async {
 }
 
 Future<dynamic> getMyIssuesCall() async {
-  var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'getMyIssues',
     apiUrl: '$apiUrl/issues',
@@ -193,9 +201,8 @@ Future<dynamic> getMyIssuesCall() async {
   );
 }
 
-
 Future<dynamic> getMessagesCall() async {
-  var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'getMessages',
     apiUrl: '$apiUrl/messages',
@@ -209,7 +216,7 @@ Future<dynamic> getMessagesCall() async {
 }
 
 Future<dynamic> getUserInfoCall() async {
-    var userToken = await getToken();
+ var userToken = globals.box.read("token");
   return ApiManager.instance.makeApiCall(
     callName: 'GetUserInfo',
     apiUrl: '$apiUrl',

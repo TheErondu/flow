@@ -64,8 +64,8 @@ class _FlutterFlowAudioPlayerState extends State<FlutterFlowAudioPlayer> {
     } else {
       await _assetsAudioPlayer.open(
         Playlist(audios: [widget.audio]),
-        autoStart: true,
-        playInBackground: PlayInBackground.disabledRestoreOnForeground,
+        autoStart: false,
+        playInBackground: PlayInBackground.disabledPause,
         showNotification: true,
       );
     }

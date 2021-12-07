@@ -1,18 +1,13 @@
+import 'dart:async';
 import 'dart:io';
-
 import 'package:brave/backend/api_requests/api_calls.dart';
-import 'package:brave/home_page/home_page_widget.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login/login_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../main.dart';
+import '../globals.dart' as globals;
 
 class IndexWidget extends StatefulWidget {
   IndexWidget({Key key}) : super(key: key);
@@ -23,19 +18,31 @@ class IndexWidget extends StatefulWidget {
 
 class _IndexWidgetState extends State<IndexWidget> {
   PageController pageViewController;
+  int _currentPage = 0;
+  PageController _pageController = PageController(
+    initialPage: 0,
+  );
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   dynamic check;
 
-  // Future<Null> authCheck() async {
-  //   try {
-  //     check = await authCheckCall();
-  //     var res = HttpResponse;
-  //     print(res);
-  //   } finally {
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 5), (Timer timer) {
+      if (_currentPage < 2) {
+        _currentPage++;
+      } else {
+        _currentPage = 2;
+      }
 
-  //   }
-  // }
+      _pageController.animateToPage(
+        _currentPage,
+        duration: Duration(milliseconds: 350),
+        curve: Curves.easeIn,
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,11 +58,14 @@ class _IndexWidgetState extends State<IndexWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/images/brave_logo.jpeg',
-                  width: 200,
-                  height: 100,
-                  fit: BoxFit.fitHeight,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Image.asset(
+                    'assets/images/brave_logo.jpeg',
+                    width: 200,
+                    height: 100,
+                    fit: BoxFit.fitHeight,
+                  ),
                 )
               ],
             ),
@@ -70,8 +80,7 @@ class _IndexWidgetState extends State<IndexWidget> {
                   child: Stack(
                     children: [
                       PageView(
-                        controller: pageViewController ??=
-                            PageController(initialPage: 0),
+                        controller: _pageController,
                         scrollDirection: Axis.horizontal,
                         children: [
                           Container(
@@ -248,7 +257,7 @@ class _IndexWidgetState extends State<IndexWidget> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          'At ',
+                                          'Stream and Listen! ',
                                           textAlign: TextAlign.center,
                                           style:
                                               FlutterFlowTheme.title1.override(
@@ -283,40 +292,122 @@ class _IndexWidgetState extends State<IndexWidget> {
                                       )
                                     ],
                                   ),
-                                )
+                                ),
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 50, 0, 0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                           var token = globals.box.read("token");
+                                          setState(() => _loadingButton = true);
+                                          if (token == null){
+                                              await Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      LoginWidget(),
+                                                ),
+                                              );
+                                            }
+                                          try {
+                                            check = await authCheckCall();
+                                            var response =
+                                                check['message'].toString();
+                                            var name = check['user']['name']
+                                                .toString();
+
+                                            if (name == null){
+                                              await Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      LoginWidget(),
+                                                ),
+                                              );
+                                            }
+
+
+                                           
+                                            globals.box.write("name", name);
+                                            if (response == "Authenticated") {
+                                              await Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      NavBarPage(
+                                                          initialPage:
+                                                              'HomePage',
+                                                          user: name),
+                                                ),
+                                              );
+                                            } else
+                                              await Navigator.of(context)
+                                                  .pushReplacement(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      LoginWidget(),
+                                                ),
+                                              );
+                                              
+                                          } on SocketException catch (e) {
+                                            // Display an alert, no internet
+                                            print('No Internet or Server Down');
+                                            showDialog<String>(
+                                              context: context,
+                                              builder: (BuildContext context) =>
+                                                  AlertDialog(
+                                                title: Text(
+                                                    'Error contacting Brave Server!'),
+                                                content: Text(
+                                                    "No internet or Server is Down : Check your internet settings."),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.of(context)
+                                                            .pop(),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          } finally {
+                                            setState(
+                                                () => _loadingButton = false);
+                                          }
+                                        },
+                                        text: 'Continue',
+                                        options: FFButtonOptions(
+                                          width: 200,
+                                          height: 50,
+                                          color: Color(0xFF1C3C8A),
+                                          textStyle: FlutterFlowTheme.subtitle1
+                                              .override(
+                                            fontFamily: 'Lexend Deca',
+                                            color:
+                                                FlutterFlowTheme.tertiaryColor,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          elevation: 2,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius: 8,
+                                        ),
+                                        loading: _loadingButton,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ],
                             ),
                           )
                         ],
-                      ),
-                      Align(
-                        alignment: AlignmentDirectional(0, 1),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                          child: SmoothPageIndicator(
-                            controller: pageViewController ??=
-                                PageController(initialPage: 0),
-                            count: 3,
-                            axisDirection: Axis.horizontal,
-                            onDotClicked: (i) {
-                              pageViewController.animateToPage(
-                                i,
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.ease,
-                              );
-                            },
-                            effect: ExpandingDotsEffect(
-                              expansionFactor: 2,
-                              spacing: 8,
-                              radius: 16,
-                              dotWidth: 16,
-                              dotHeight: 4,
-                              dotColor: Color(0x8AC6CAD4),
-                              activeDotColor: Colors.white,
-                              paintStyle: PaintingStyle.fill,
-                            ),
-                          ),
-                        ),
                       ),
                     ],
                   ),
@@ -324,106 +415,6 @@ class _IndexWidgetState extends State<IndexWidget> {
               )
             ],
           ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      setState(() => _loadingButton = true);
-                      try {
-                        check = await authCheckCall();
-                        var response = check['message'].toString();
-
-                        if (response == "authenticated") {
-                          await Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => NavBarPage(
-                                initialPage: 'HomePage',
-                              ),
-                            ),
-                          );
-                        } else {
-                          await Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (context) => LoginWidget(),
-                            ),
-                          );
-                        }
-                      } on SocketException catch (e) {
-                        // Display an alert, no internet
-                        print('No Internet or Server Down');
-                         showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text('Error contacting Brave Server!'),
-                                content: Text(
-                                    "No internet or Server is Down : Check your internet settings."),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(context).pop(),
-
-                                    child: const Text('Ok'),
-                                    ),
-                                ],
-                              ),
-                            );
-                      }
-                      finally {
-                        setState(() => _loadingButton = false);
-                      }
-                      // try {
-                      //   SharedPreferences prefs =
-                      //       await SharedPreferences.getInstance();
-                      //   var token = prefs.getString('token');
-                      //   if (token == null) {
-                      //     await Navigator.of(context).pushReplacement(
-                      //       MaterialPageRoute(
-                      //         builder: (context) => LoginWidget(),
-                      //       ),
-                      //     );
-                      //   } else {
-                      //     await Navigator.of(context).pushReplacement(
-                      //       MaterialPageRoute(
-                      //         builder: (context) => NavBarPage(
-                      //           initialPage: 'HomePage',
-                      //         ),
-                      //       ),
-                      //     );
-                      //   }
-                      // } finally {
-                      //   setState(() => _loadingButton = false);
-                      // }
-                    },
-                    text: 'Continue',
-                    options: FFButtonOptions(
-                      width: 200,
-                      height: 50,
-                      color: Color(0xFF1C3C8A),
-                      textStyle: FlutterFlowTheme.subtitle1.override(
-                        fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.tertiaryColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      elevation: 2,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1,
-                      ),
-                      borderRadius: 8,
-                    ),
-                    loading: _loadingButton,
-                  ),
-                )
-              ],
-            ),
-          )
         ],
       ),
     );

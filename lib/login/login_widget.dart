@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
+import '../globals.dart' as globals;
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
@@ -194,45 +195,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                           );
                           var error =
                               (getJsonField(accessToken, r'''$.error'''));
-                          var message =
-                              (getJsonField(accessToken, r'''$.message'''));
-                          var user = (getJsonField(accessToken, r'''$.name'''));
                           dynamic token = (getJsonField(
                               accessToken, r'''$.access_token'''));
+                              dynamic name = (getJsonField(
+                              accessToken, r'''$.name'''));
 
                           if (error == null) {
-                            
-                              SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
-                              prefs.setString('token', token);
+                            // SharedPreferences prefs =
+                            //     await SharedPreferences.getInstance();
+                            // prefs.setString('token', token);
+                            globals.box.write("token", token);
+                             globals.box.write("name", name);
 
-                              var userToken = prefs.getString('token');
-                            
+                            Navigator.of(context)
+                                        .pushAndRemoveUntil(
+                                            MaterialPageRoute(
+                                              builder: (context) => NavBarPage(
+                                                initialPage: 'HomePage',
+                                              ),
+                                            ),
+                                            (Route route) => false);
 
-                            showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: Text(message),
-                                content: Text(
-                                    "Welcome Back, $user!, your token is $userToken"),
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                        builder: (context) => NavBarPage(
-                                          initialPage: 'HomePage',
-                                        ),
-                                      ),
-                                      (Route route) => false),
-
-                                    child: const Text('Go to Dashboard'),
-                                    ),
-                                ],
-                              ),
-                            );
-
-                            setState(() => _loadingButton = false);
+                          
                           } else {
                             setState(() => _showToastError(context));
                           }
