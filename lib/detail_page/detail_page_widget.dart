@@ -29,7 +29,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
             Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                FutureBuilder<dynamic>(
+                FutureBuilder<ApiCallResponse>(
                   future: getDirReportsCall(),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -144,7 +144,7 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    'Name of Suite:${getJsonField(columnGetDirReportsResponse, r'''$''').toString()}',
+                                    'Name of Suite:${getJsonField(columnGetDirReportsResponse.jsonBody, r'''$''').toString()}',
                                     'n/A',
                                   ),
                                   style: FlutterFlowTheme.subtitle1.override(
@@ -175,7 +175,9 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    getJsonField(columnGetDirReportsResponse,
+                                    getJsonField(
+                                            columnGetDirReportsResponse
+                                                .jsonBody,
                                             r'''$.0.start''')
                                         .toString(),
                                     'date',
@@ -201,7 +203,9 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    getJsonField(columnGetDirReportsResponse,
+                                    getJsonField(
+                                            columnGetDirReportsResponse
+                                                .jsonBody,
                                             r'''$''')
                                         .toString(),
                                     'nil',
@@ -246,7 +250,9 @@ class _DetailPageWidgetState extends State<DetailPageWidget> {
                                       0, 4, 0, 4),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      getJsonField(columnGetDirReportsResponse,
+                                      getJsonField(
+                                              columnGetDirReportsResponse
+                                                  .jsonBody,
                                               r'''$.0.comment''')
                                           .toString(),
                                       'comment',

@@ -1,6 +1,8 @@
 import 'api_manager.dart';
 
-Future<dynamic> getDirReportsCall() {
+export 'api_manager.dart' show ApiCallResponse;
+
+Future<ApiCallResponse> getDirReportsCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'GetDirReports',
     apiUrl: 'https://nbd.bravetech.media/api/reports',
@@ -9,11 +11,11 @@ Future<dynamic> getDirReportsCall() {
       'Authorization': 'Bearer 66|t1RiW72NWsTYjCTT8gGGfY3hAQFz4HeiHeCakuWU',
     },
     params: {},
-    returnResponse: true,
+    returnBody: true,
   );
 }
 
-Future<dynamic> getUserInfoCall() {
+Future<ApiCallResponse> getUserInfoCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'GetUserInfo',
     apiUrl: 'https://nbd.bravetech.media/api/',
@@ -22,11 +24,11 @@ Future<dynamic> getUserInfoCall() {
       'Authorization': 'Bearer 1|MuOOaqcyT2ld8o1aKSnl7IJtADYZQat57Ul3yKa7',
     },
     params: {},
-    returnResponse: true,
+    returnBody: true,
   );
 }
 
-Future<dynamic> loginCall({
+Future<ApiCallResponse> loginCall({
   String email = 'email',
   String password = 'password',
 }) {
@@ -40,6 +42,6 @@ Future<dynamic> loginCall({
       'password': password,
     },
     bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
-    returnResponse: true,
+    returnBody: true,
   );
 }

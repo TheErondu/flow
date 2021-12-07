@@ -426,7 +426,7 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                   )
                 ],
               ),
-              FutureBuilder<dynamic>(
+              FutureBuilder<ApiCallResponse>(
                 future: getDirReportsCall(),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
@@ -445,10 +445,11 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                   final columnGetDirReportsResponse = snapshot.data;
                   return Builder(
                     builder: (context) {
-                      final reportsList =
-                          getJsonField(columnGetDirReportsResponse, r'''$''')
-                                  ?.toList() ??
-                              [];
+                      final reportsList = getJsonField(
+                                  columnGetDirReportsResponse.jsonBody,
+                                  r'''$''')
+                              ?.toList() ??
+                          [];
                       if (reportsList.isEmpty) {
                         return Center(
                           child: Image.asset(

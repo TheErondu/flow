@@ -15,10 +15,10 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
+  ApiCallResponse accessToken;
   TextEditingController textController1;
   TextEditingController textController2;
   bool passwordVisibility;
-  dynamic accessToken;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -185,7 +185,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           email: textController1.text,
                           password: textController2.text,
                         );
-                        if (getJsonField(accessToken, r'''$''')) {
+                        if (getJsonField(accessToken.jsonBody, r'''$''')) {
                           await Navigator.push(
                             context,
                             MaterialPageRoute(

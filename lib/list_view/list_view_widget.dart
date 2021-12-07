@@ -141,7 +141,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
                 ),
               ),
               Expanded(
-                child: FutureBuilder<dynamic>(
+                child: FutureBuilder<ApiCallResponse>(
                   future: getDirReportsCall(),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -160,10 +160,11 @@ class _ListViewWidgetState extends State<ListViewWidget> {
                     final columnGetDirReportsResponse = snapshot.data;
                     return Builder(
                       builder: (context) {
-                        final oblogsList =
-                            getJsonField(columnGetDirReportsResponse, r'''$''')
-                                    ?.toList() ??
-                                [];
+                        final oblogsList = getJsonField(
+                                    columnGetDirReportsResponse.jsonBody,
+                                    r'''$''')
+                                ?.toList() ??
+                            [];
                         return SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,

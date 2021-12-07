@@ -28,7 +28,7 @@ dependencies:
   assets_audio_player: 3.0.3+3
   auto_size_text: 3.0.0
   cached_network_image: 3.1.0+1
-  equatable: 1.2.6
+  equatable: 2.0.3
   flutter_spinkit: 4.1.2+1
   font_awesome_flutter: 8.11.0
   google_fonts: 2.1.0
@@ -36,7 +36,6 @@ dependencies:
   json_path: 0.2.1
   page_transition: 2.0.4
   photo_view: ^0.13.0
-  smooth_page_indicator: 1.0.0+2
   timeago: 3.1.0
   url_launcher: 6.0.15
   webviewx: 0.1.0
