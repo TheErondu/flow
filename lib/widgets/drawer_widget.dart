@@ -1,6 +1,8 @@
+import 'package:brave/backend/api_requests/api_calls.dart';
 import 'package:brave/dir_reports/index.dart';
 import 'package:brave/issues/index.dart';
 import 'package:brave/messages/index.dart';
+import 'package:brave/store_page/list.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -241,6 +243,58 @@ class DrawerWidget extends StatelessWidget {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
+                                      builder: (context) => StoreListWidget(),
+                                    ),
+                                  );
+                                },
+                                child: Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12, 12, 12, 12),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Icon(
+                                          Icons.shopping_cart_outlined,
+                                          color: Color(0xFF2157DB),
+                                          size: 28,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 0, 0),
+                                          child: Text(
+                                            'Store Manager ',
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF4E4E4E),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
                                       builder: (context) =>
                                           NavBarPage(initialPage: 'LiveTvPage'),
                                     ),
@@ -347,8 +401,7 @@ class DrawerWidget extends StatelessWidget {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          IssuesListWidget(),
+                                      builder: (context) => IssuesListWidget(),
                                     ),
                                   );
                                 },
@@ -409,11 +462,15 @@ class DrawerWidget extends StatelessWidget {
                               Expanded(
                                 child: InkWell(
                                   onTap: () async {
-                                    await Navigator.push(
+                                    await logoutCall();
+
+                                    await Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => LoginWidget(),
+                                        builder: (context) =>
+                                            LoginWidget(),
                                       ),
+                                      (r) => false,
                                     );
                                   },
                                   child: Card(

@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:brave/list_view/list_view_widget.dart';
+
 import '../globals.dart' as globals;
 import 'package:brave/flutter_flow/flutter_flow_expanded_image_view.dart';
 import 'package:brave/flutter_flow/flutter_flow_widgets.dart';
@@ -50,11 +52,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         curve: Curves.easeIn,
       );
     });
+    print(globals.summary);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+        leading: IconButton(
+          color: FlutterFlowTheme.primaryColor,
+          icon: Icon(Icons.menu_sharp),
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        ),
+          backgroundColor: FlutterFlowTheme.tertiaryColor,
+        ),
       key: scaffoldKey,
       backgroundColor: Color(0xFF13172C),
       body: SafeArea(
@@ -124,7 +135,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(globals.name.toString(),
+                                child: Text(
+                                  globals.name.toString(),
                                   style: FlutterFlowTheme.title3.override(
                                     fontFamily: 'Lexend Deca',
                                     color: Color(0xFFE7AD11),
@@ -233,7 +245,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              ReportsListViewWidget(),
+                                              ReportsLandingWidget(),
                                         ),
                                       );
                                     },
@@ -607,7 +619,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           type: PageTransitionType.fade,
                                           child: FlutterFlowExpandedImageView(
                                             image: Image.network(
-                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCQOFXvsrV3Rg7-FT9lx__jsa-xhMvbkMKcA&usqp=CAU',
+                                              'https://nbd.bravetech.media/img/slot2.jpeg',
                                               fit: BoxFit.contain,
                                             ),
                                             allowRotation: false,
@@ -623,10 +635,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(15),
                                         child: Image.network(
-                                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCQOFXvsrV3Rg7-FT9lx__jsa-xhMvbkMKcA&usqp=CAU',
+                                          'https://nbd.bravetech.media/img/slot2.jpeg',
                                           width: 100,
                                           height: 100,
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                     ),
@@ -639,7 +651,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           type: PageTransitionType.fade,
                                           child: FlutterFlowExpandedImageView(
                                             image: Image.network(
-                                              'https://scontent-los2-1.xx.fbcdn.net/v/t1.6435-9/82900020_10156243704929058_1184052797662822400_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=6e5ad9&_nc_ohc=dTVm1HpW1aMAX8M0cfO&_nc_ht=scontent-los2-1.xx&oh=c6416eb678469a7d369e339f87c68ac9&oe=61D468A0',
+                                              'https://nbd.bravetech.media/img/slot3.jpeg',
                                               fit: BoxFit.contain,
                                             ),
                                             allowRotation: false,
@@ -653,10 +665,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       tag: 'imageTag3',
                                       transitionOnUserGestures: true,
                                       child: Image.network(
-                                        'https://scontent-los2-1.xx.fbcdn.net/v/t1.6435-9/82900020_10156243704929058_1184052797662822400_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=6e5ad9&_nc_ohc=dTVm1HpW1aMAX8M0cfO&_nc_ht=scontent-los2-1.xx&oh=c6416eb678469a7d369e339f87c68ac9&oe=61D468A0',
+                                        'https://nbd.bravetech.media/img/slot3.jpeg',
                                         width: 100,
                                         height: 100,
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),

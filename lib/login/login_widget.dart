@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -195,31 +196,53 @@ class _LoginWidgetState extends State<LoginWidget> {
                           );
                           var error =
                               (getJsonField(accessToken, r'''$.error'''));
-                          dynamic token = (getJsonField(
-                              accessToken, r'''$.access_token'''));
-                              dynamic name = (getJsonField(
-                              accessToken, r'''$.name'''));
-
                           if (error == null) {
-                            // SharedPreferences prefs =
-                            //     await SharedPreferences.getInstance();
-                            // prefs.setString('token', token);
-                            globals.box.write("token", token);
-                             globals.box.write("name", name);
+                            isAuthenticated = true;
 
-                            Navigator.of(context)
-                                        .pushAndRemoveUntil(
-                                            MaterialPageRoute(
-                                              builder: (context) => NavBarPage(
-                                                initialPage: 'HomePage',
-                                              ),
-                                            ),
-                                            (Route route) => false);
+                            var name = accessToken['name'].toString();
+                            var mytoken =
+                                accessToken['access_token'].toString();
+                            var userId = accessToken['user_id'].toString();
+                            var role = accessToken['role'].toString();
+                            var department =
+                                accessToken['department'].toString();
+                            var departmentId =
+                                accessToken['department_id'].toString();
 
-                          
+                            globals.box.write("name", name);
+                            globals.box.write("userId", userId);
+                            globals.box.write("role", role);
+                            globals.box.write("department", department);
+                            globals.box.write("department_id", departmentId);
+                            globals.box.write("token", mytoken);
+
+                            await Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                  builder: (context) => NavBarPage(
+                                    initialPage: 'HomePage',
+                                  ),
+                                ),
+                                (Route route) => false);
                           } else {
-                            setState(() => _showToastError(context));
+                            await _showToastError(context);
                           }
+                        } on SocketException catch (e) {
+                          // Display an alert, no internet
+                          print('No Internet or Server Down');
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: Text('Error contacting Brave Server!'),
+                              content: Text(
+                                  "No internet or Server is Down : Check your internet settings."),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.of(context).pop(),
+                                  child: const Text('Ok'),
+                                ),
+                              ],
+                            ),
+                          );
                         } finally {
                           setState(() => _loadingButton = false);
                         }
@@ -267,7 +290,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     );
   }
 
-  void _showToastError(BuildContext context) {
+  _showToastError(BuildContext context) {
     var loginError = (getJsonField(accessToken, r'''$.error'''));
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(

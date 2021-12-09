@@ -50,6 +50,10 @@ dependencies:
   streaming_radio_flutter_plugin: ^3.0.2
   assets_audio_player: 3.0.3+3
   webviewx: ^0.1.0
+  flutter_onboarding_screen: ^2.0.2
+  date_format: ^2.0.4
+  lottie: ^1.2.1
+  flutter_native_splash: ^1.3.2
 
 dev_dependencies:
   flutter_launcher_icons: ^0.9.1
@@ -84,7 +88,9 @@ flutter:
     - assets/audios/
     - assets/lottie_animations/
     - assets/rive_animations/
-
+flutter_native_splash:
+  #color: "#42a5f5"
+  background_image: "assets/images/splashscreen.png"
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

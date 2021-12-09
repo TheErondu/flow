@@ -3,6 +3,7 @@ import 'package:brave/editor_logs/index.dart';
 import 'package:brave/graphics_logs_news/index.dart';
 import 'package:brave/graphics_logs_shows/index.dart';
 import 'package:brave/mcr_logs/index.dart';
+import '../globals.dart' as globals;
 import 'package:brave/ob_logs/index.dart';
 import 'package:brave/prod_show_logs/index.dart';
 import 'package:brave/prompter_log_news/index.dart';
@@ -20,6 +21,7 @@ class ReportCategoriesWidget extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
+            if (globals.role == "Admin" || globals.role == "DIRECTORS" )
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(
@@ -80,6 +82,7 @@ class ReportCategoriesWidget extends StatelessWidget {
                 ),
               ),
             ),
+             if (globals.role == "Admin" || globals.role == "VIDEO-EDITOR" )
              Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(
@@ -140,6 +143,7 @@ class ReportCategoriesWidget extends StatelessWidget {
                 ),
               ),
             ),
+             if (globals.role == "Admin" || globals.role == "CREATIVE TEAM" )
              Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(
@@ -200,6 +204,7 @@ class ReportCategoriesWidget extends StatelessWidget {
                 ),
               ),
             ),
+             if (globals.role == "Admin" || globals.role == "CREATIVE TEAM" )
              Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(
@@ -259,7 +264,9 @@ class ReportCategoriesWidget extends StatelessWidget {
                   ),
                 ),
               ),
-            ), Padding(
+            ),
+             if (globals.role == "Admin" || globals.role == "STUDIO TECHNICAL OPERATORS" )
+             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(
                 color: Colors.transparent,
@@ -319,6 +326,7 @@ class ReportCategoriesWidget extends StatelessWidget {
                 ),
               ),
             ),
+             if (globals.role == "Admin" || globals.role == "ENGINEER" )
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(
@@ -379,6 +387,7 @@ class ReportCategoriesWidget extends StatelessWidget {
                 ),
               ),
             ),
+             if (globals.role == "Admin" || globals.role == "STUDIO TECHNICAL OPERATORS" )
              Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(
@@ -439,6 +448,7 @@ class ReportCategoriesWidget extends StatelessWidget {
                 ),
               ),
             ),
+             if (globals.role == "Admin" || globals.role == "STUDIO TECHNICAL OPERATORS" )
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(
@@ -499,6 +509,7 @@ class ReportCategoriesWidget extends StatelessWidget {
                 ),
               ),
             ),
+             if (globals.role == "Admin" || globals.role == "DIRECTORS" || globals.role == "PRODUCTION" )
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
               child: Material(

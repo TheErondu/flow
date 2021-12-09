@@ -3,23 +3,23 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import '../globals.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DirLogsDetailPageWidget extends StatefulWidget {
-  const DirLogsDetailPageWidget({Key key, this.index}) : super(key: key);
+class StoreItemDetailpageWidget extends StatefulWidget {
+  const StoreItemDetailpageWidget({Key key, this.index}) : super(key: key);
   final int index;
-
   @override
-  _DirLogsDetailPageWidgetState createState() =>
-      _DirLogsDetailPageWidgetState();
+  _StoreItemDetailpageWidgetState createState() =>
+      _StoreItemDetailpageWidgetState();
 }
 
-class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
+class _StoreItemDetailpageWidgetState extends State<StoreItemDetailpageWidget> {
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final getDirReport = getDirReportsCall();
+  final getStoreInfo = getStoreInfoCall();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 FutureBuilder<dynamic>(
-                  future: getDirReport,
+                  future: getStoreInfo,
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -121,7 +121,7 @@ class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Bulletin 1 ',
+                                  'Item Details',
                                   style: FlutterFlowTheme.bodyText2.override(
                                     fontFamily: 'Poppins',
                                     color: Color(0xFF6F6C6C),
@@ -147,7 +147,9 @@ class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Text( data[iD]['bulletin'].toString(),
+                                child: Text(
+                                  data['store_items'][iD]['item_name']
+                                      .toString(),
                                   style: FlutterFlowTheme.subtitle1.override(
                                     fontFamily: 'Poppins',
                                     color: Colors.white,
@@ -175,7 +177,8 @@ class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  data[iD]['start'].toString(),
+                                  globals.getFormatedDate(
+                                      data['store_items'][iD]['created_at']),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
                                     color: Color(0xFF4B39EF),
@@ -196,7 +199,8 @@ class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                 child: Text(
-                                  data[iD]['id'].toString(),
+                                  data['store_items'][iD]['serial_no']
+                                      .toString(),
                                   style: FlutterFlowTheme.bodyText1.override(
                                     fontFamily: 'Poppins',
                                     color: FlutterFlowTheme.primaryColor,
@@ -216,7 +220,7 @@ class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
                                 child: Text(
-                                  'Comments',
+                                  'Assigned Department',
                                   style: FlutterFlowTheme.bodyText2,
                                 ),
                               )
@@ -232,7 +236,10 @@ class _DirLogsDetailPageWidgetState extends State<DirLogsDetailPageWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 4, 0, 4),
-                                  child: Text( data[iD]['comment'].toString(),
+                                  child: Text(
+                                    data['store_items'][iD]
+                                            ['assigned_department']
+                                        .toString(),
                                     textAlign: TextAlign.start,
                                     style: GoogleFonts.getFont(
                                       'Lexend Deca',

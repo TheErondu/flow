@@ -1,24 +1,27 @@
-import 'package:brave/widgets/report_categories.dart';
-import '../globals.dart' as globals;
+import 'package:brave/home_page/home_page_widget.dart';
+import 'package:brave/main.dart';
+import 'package:brave/store_page/detail.dart';
+import 'package:brave/store_page/store_item_detail.dart';
+import 'package:brave/widgets/store_categories.dart';
+
 import '../backend/api_requests/api_calls.dart';
-import '../dir_reports/detail.dart';
+import '../issues/detail.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import '../main.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class ReportsListViewWidget extends StatefulWidget {
-  const ReportsListViewWidget({Key key}) : super(key: key);
+class StoreListWidget extends StatefulWidget {
+  const StoreListWidget({Key key, this.status}) : super(key: key);
+  final String status;
 
   @override
-  _ReportsListViewWidgetState createState() => _ReportsListViewWidgetState();
+  _StoreListWidget createState() => _StoreListWidget();
 }
 
-class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
-   Future<dynamic> getDirReports;
+class _StoreListWidget extends State<StoreListWidget> {
+  Future<dynamic> getStoreInfo;
   TextEditingController searchFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -26,7 +29,8 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
   void initState() {
     super.initState();
     searchFieldController = TextEditingController();
-    getDirReports = getDirReportsCall();
+    getStoreInfo = getStoreInfoCall();
+    print(widget.status);
   }
 
   @override
@@ -34,10 +38,20 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NavBarPage(
+                      initialPage: "HomePage",
+                    ),
+                  ),
+                )),
         backgroundColor: Color(0xFF090F13),
         automaticallyImplyLeading: true,
         title: Text(
-          'Logs',
+          'Store Manager',
           style: FlutterFlowTheme.title1.override(
             fontFamily: 'Lexend Deca',
             color: Colors.white,
@@ -64,7 +78,7 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Report Categories',
+                          'Store Manager',
                           style: FlutterFlowTheme.bodyText2.override(
                             fontFamily: 'Lexend Deca',
                             color: Color(0xFF8B97A2),
@@ -76,7 +90,7 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                     ),
                   ),
                   //Categories Widget
-                  ReportCategoriesWidget(),
+                  StoreCategoriesWidget(),
                   //
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 8, 20, 8),
@@ -84,7 +98,7 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'List View',
+                          widget.status ?? 'Store Request',
                           style: FlutterFlowTheme.bodyText2.override(
                             fontFamily: 'Lexend Deca',
                             color: Color(0xFF8B97A2),
@@ -98,7 +112,7 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                 ],
               ),
               FutureBuilder<dynamic>(
-                future: getDirReports,
+                future: getStoreInfo,
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -113,13 +127,23 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                       ),
                     );
                   }
-                  final columnGetDirReportsResponse = snapshot.data;
+                  final res = snapshot.data;
+                  dynamic query;
+                  if (widget.status == "Pending") {
+                    query = getJsonField(res, r'''$..store_requests''');
+                  } else if ((widget.status == "Approved")) {
+                    query = getJsonField(res, r'''$..borrowed_items''');
+                  } else if ((widget.status == "Returned")) {
+                    query = getJsonField(res, r'''$..returned_items''');
+                  } else if ((widget.status == "All")) {
+                    query = getJsonField(res, r'''$..store_items''');
+                  } else {
+                    query = getJsonField(res, r'''$..store_requests''');
+                  }
+
                   return Builder(
                     builder: (context) {
-                      final reportsList =
-                          getJsonField(columnGetDirReportsResponse, r'''$''')
-                                  ?.toList() ??
-                              [];
+                      final reportsList = query?.toList() ?? [];
                       if (reportsList.isEmpty) {
                         return Center(
                           child: Image.asset(
@@ -135,7 +159,7 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                               (reportsListIndex) {
                             final reportsListItem =
                                 reportsList[reportsListIndex];
-                                 var i = reportsListIndex;
+                            var i = reportsListIndex;
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 0, 3),
@@ -155,8 +179,14 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                                           await Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DirLogsDetailPageWidget(index: i),
+                                              builder: (context) => widget
+                                                          .status ==
+                                                      "All"
+                                                  ? StoreItemDetailpageWidget(
+                                                      index: i)
+                                                  : StoreRequestDetailpageWidget(
+                                                      index: i,
+                                                    ),
                                             ),
                                           );
                                         },
@@ -193,15 +223,27 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                                                           MainAxisSize.max,
                                                       children: [
                                                         AutoSizeText(
-                                                          getJsonField(
-                                                                  reportsListItem,
-                                                                  r'''$..bulletin''')
-                                                              .toString()
-                                                              .maybeHandleOverflow(
-                                                                maxChars: 25,
-                                                                replacement:
-                                                                    '…',
-                                                              ),
+                                                          widget.status == "All"
+                                                              ? getJsonField(
+                                                                      reportsListItem,
+                                                                      r'''$..item_name''')
+                                                                  .toString()
+                                                                  .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        25,
+                                                                    replacement:
+                                                                        '…',
+                                                                  )
+                                                              : getJsonField(
+                                                                      reportsListItem,
+                                                                      r'''$..item''')
+                                                                  .toString()
+                                                                  .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        25,
+                                                                    replacement:
+                                                                        '…',
+                                                                  ),
                                                           style:
                                                               FlutterFlowTheme
                                                                   .subtitle1
@@ -222,15 +264,27 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                                                           MainAxisSize.max,
                                                       children: [
                                                         Text(
-                                                          getJsonField(
+                                                          widget.status == "All"
+                                                              ? getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..comment''')
-                                                              .toString()
-                                                              .maybeHandleOverflow(
-                                                                maxChars: 35,
-                                                                replacement:
-                                                                    '…',
-                                                              ),
+                                                                  r'''$..serial_no'''
+                                                                      .toString()
+                                                                      .maybeHandleOverflow(
+                                                                        maxChars:
+                                                                            25,
+                                                                        replacement:
+                                                                            '…',
+                                                                      ))
+                                                              : getJsonField(
+                                                                      reportsListItem,
+                                                                      r'''$..status''')
+                                                                  .toString()
+                                                                  .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        35,
+                                                                    replacement:
+                                                                        '…',
+                                                                  ),
                                                           style:
                                                               FlutterFlowTheme
                                                                   .bodyText2
@@ -252,10 +306,22 @@ class _ReportsListViewWidgetState extends State<ReportsListViewWidget> {
                                                           MainAxisSize.max,
                                                       children: [
                                                         Text(
-                                                          getJsonField(
-                                                                  reportsListItem,
-                                                                  r'''$..start''')
-                                                              .toString(),
+                                                          widget.status == "All"
+                                                              ? getJsonField(
+                                                                      reportsListItem,
+                                                                      r'''$..assigned_department''')
+                                                                  .toString()
+                                                                  .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        25,
+                                                                    replacement:
+                                                                        '…',
+                                                                  )
+                                                              : getJsonField(
+                                                                      reportsListItem,
+                                                                      r'''$..return_date''') ??
+                                                                  'date'
+                                                                      .toString(),
                                                           style:
                                                               FlutterFlowTheme
                                                                   .bodyText1
