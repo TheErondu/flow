@@ -16,10 +16,10 @@ class ReportsLandingWidget extends StatefulWidget {
   _ReportsLandingWidgetState createState() => _ReportsLandingWidgetState();
 }
 
-class _ReportsLandingWidgetState extends State<ReportsLandingWidget> 
-  with TickerProviderStateMixin{
-      AnimationController _controller;
-  
+class _ReportsLandingWidgetState extends State<ReportsLandingWidget>
+    with TickerProviderStateMixin {
+  AnimationController _controller;
+
   Future<dynamic> getDirReports;
   TextEditingController searchFieldController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -30,7 +30,7 @@ class _ReportsLandingWidgetState extends State<ReportsLandingWidget>
     super.initState();
     searchFieldController = TextEditingController();
     getDirReports = getDirReportsCall();
-     _controller = AnimationController(
+    _controller = AnimationController(
       duration: Duration(seconds: (5)),
       vsync: this,
     );
@@ -81,7 +81,6 @@ class _ReportsLandingWidgetState extends State<ReportsLandingWidget>
                         ),
                       );
                     }
-                    final data = snapshot.data;
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -104,8 +103,6 @@ class _ReportsLandingWidgetState extends State<ReportsLandingWidget>
                           ),
                         ),
                         ReportCategoriesWidget(),
-                        
-                      
                         Lottie.asset(
                           'assets/lottie_animations/intro.json',
                           controller: _controller,
@@ -114,7 +111,7 @@ class _ReportsLandingWidgetState extends State<ReportsLandingWidget>
                           onLoaded: (composition) {
                             _controller
                               ..duration = composition.duration
-                              ..forward();
+                              ..forward().whenComplete(() => null);
                           },
                         ),
                         Padding(

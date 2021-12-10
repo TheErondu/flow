@@ -190,7 +190,7 @@ class _StoreItemDetailpageWidgetState extends State<StoreItemDetailpageWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 4),
                                 child: Icon(
-                                  Icons.location_on_sharp,
+                                  Icons.handyman,
                                   color: FlutterFlowTheme.primaryColor,
                                   size: 20,
                                 ),

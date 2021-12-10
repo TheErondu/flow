@@ -188,7 +188,7 @@ class _StoreRequestDetailpageWidgetState
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(24, 0, 0, 4),
                                 child: Icon(
-                                  Icons.location_on_sharp,
+                                  Icons.handyman_sharp,
                                   color: FlutterFlowTheme.primaryColor,
                                   size: 20,
                                 ),

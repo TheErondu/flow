@@ -1,7 +1,7 @@
 import 'api_manager.dart';
 import '../../globals.dart' as globals;
 
-const apiUrl = "http://192.168.95.31:8001/api";
+const apiUrl = "http://127.0.0.1:8001/api";
 
 Future<dynamic> authCheckCall(){
  var userToken = globals.userToken;

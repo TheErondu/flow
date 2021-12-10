@@ -224,10 +224,10 @@ class _PrompterLogShowsWidgetState extends State<PrompterLogShowsWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..challenges''') ?? '--'
+                                                                  r'''$..challenges''')
                                                               .toString()
                                                               .maybeHandleOverflow(
-                                                                maxChars: 35,
+                                                                maxChars: 34,
                                                                 replacement:
                                                                     '…',
                                                               ),
@@ -254,7 +254,7 @@ class _PrompterLogShowsWidgetState extends State<PrompterLogShowsWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..created_at''') ?? 'date'
+                                                                  r'''$..created_at''')
                                                               .toString(),
                                                           style:
                                                               FlutterFlowTheme

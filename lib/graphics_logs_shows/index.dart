@@ -227,10 +227,10 @@ class _GraphicsLogShowsWidgetState extends State<GraphicsLogShowsWidget> {
                                                         Text(
                                                           getJsonField(
                                                                   reportsListItem,
-                                                                  r'''$..challenges''') ?? '--'
+                                                                  r'''$..challenges''')
                                                               .toString()
                                                               .maybeHandleOverflow(
-                                                                maxChars: 35,
+                                                                maxChars: 30,
                                                                 replacement:
                                                                     '…',
                                                               ),

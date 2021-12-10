@@ -68,7 +68,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         ),
       key: scaffoldKey,
       backgroundColor: Color(0xFF13172C),
-      body: SafeArea(
+      body:  SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,

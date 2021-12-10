@@ -8,7 +8,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GraphicsLogShowsDetailPageWidget extends StatefulWidget {
-  const GraphicsLogShowsDetailPageWidget({Key key, this.index}) : super(key: key);
+  const GraphicsLogShowsDetailPageWidget({Key key, this.index})
+      : super(key: key);
   final int index;
   @override
   _GraphicsLogShowsDetailPageWidgetState createState() =>
@@ -19,7 +20,7 @@ class _GraphicsLogShowsDetailPageWidgetState
     extends State<GraphicsLogShowsDetailPageWidget> {
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-   final getGraphicsLogShows = getGraphicsLogShowsCall();
+  final getGraphicsLogShows = getGraphicsLogShowsCall();
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +50,8 @@ class _GraphicsLogShowsDetailPageWidgetState
                         ),
                       );
                     }
-                   final data = snapshot.data;
-        final iD = widget.index;
+                    final data = snapshot.data;
+                    final iD = widget.index;
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -117,26 +118,505 @@ class _GraphicsLogShowsDetailPageWidgetState
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                                child: Text(
-                                  'Log Details',
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xFF6F6C6C),
-                                    fontWeight: FontWeight.w600,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 8, 0),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color: Colors.white,
+                                    elevation: 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Segment",
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['segment']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.85,
+                                          height: 1,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFDBE2E7),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Host : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['host']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Director : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['director']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Anchor : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['anchor']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Graphics : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['graphics']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "producer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['producer']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "PA : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['pa']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Engineer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                              ['engineer']
+                                                          .toString()
+                                                          .maybeHandleOverflow(
+                                                              maxChars: 25,
+                                                              replacement:
+                                                                  "...") ??
+                                                      "---",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Tags In : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['tags_in']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['challenges']
+                                                      .toString(),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 0, 4),
+                                                child: Icon(
+                                                  Icons.schedule,
+                                                  color: Color(0xFF4B39EF),
+                                                  size: 20,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(4, 0, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['created_at']
+                                                      .toString(),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.87,
-                          height: 1,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
                           ),
                         ),
                         Padding(
@@ -144,105 +624,1010 @@ class _GraphicsLogShowsDetailPageWidgetState
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Text(data['graphics_log_shows'][iD]['segment']
-                                      .toString(),
-                                  style: FlutterFlowTheme.subtitle1.override(
-                                    fontFamily: 'Poppins',
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8, 0, 8, 0),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
                                     color: Colors.white,
+                                    elevation: 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Segment : ",
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['segment2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.85,
+                                          height: 1,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFDBE2E7),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Host : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['host2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Director : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['director2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Anchor : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['anchor2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Graphics : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['graphics2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "producer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['producer2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "PA : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['pa2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Engineer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                              ['engineer2']
+                                                          .toString()
+                                                          .maybeHandleOverflow(
+                                                              maxChars: 25,
+                                                              replacement:
+                                                                  "...") ??
+                                                      "---",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Tags In : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['tags_in2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['challenges2']
+                                                      .toString(),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 0, 4),
+                                                child: Icon(
+                                                  Icons.schedule,
+                                                  color: Color(0xFF4B39EF),
+                                                  size: 20,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(4, 0, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['created_at']
+                                                      .toString(),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Icon(
-                                  Icons.schedule,
-                                  color: FlutterFlowTheme.primaryColor,
-                                  size: 20,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(data['graphics_log_shows'][iD]['created_at']
-                                      .toString(),
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xFF4B39EF),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(24, 0, 0, 4),
-                                child: Icon(
-                                  Icons.location_on_sharp,
-                                  color: FlutterFlowTheme.primaryColor,
-                                  size: 20,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(data['graphics_log_shows'][iD]['rundown_in']
-                                      .toString(),
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                                child: Text(
-                                  'Comments',
-                                  style: FlutterFlowTheme.bodyText2,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 4),
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 4, 0, 4),
-                                  child: Text(data['graphics_log_shows'][iD]['challenges']
-                                      .toString(),
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.getFont(
-                                      'Lexend Deca',
-                                      color: FlutterFlowTheme.tertiaryColor,
+                                      8, 0, 8, 0),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color: Colors.white,
+                                    elevation: 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Segment : ",
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['segment3']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.85,
+                                          height: 1,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFDBE2E7),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Host : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['host3']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Director : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['director3']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Anchor : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['anchor3']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Graphics : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['graphics3']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "producer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['producer3']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "PA : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['pa3']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Engineer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                              ['engineer3']
+                                                          .toString()
+                                                          .maybeHandleOverflow(
+                                                              maxChars: 25,
+                                                              replacement:
+                                                                  "...") ??
+                                                      "---",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Tags In : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['tags_in3']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['challenges3']
+                                                      .toString(),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 0, 4),
+                                                child: Icon(
+                                                  Icons.schedule,
+                                                  color: Color(0xFF4B39EF),
+                                                  size: 20,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(4, 0, 0, 0),
+                                                child: Text(
+                                                  data['graphics_log_shows'][iD]
+                                                          ['created_at']
+                                                      .toString(),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
