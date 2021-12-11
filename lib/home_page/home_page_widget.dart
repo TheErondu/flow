@@ -618,7 +618,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           type: PageTransitionType.fade,
                                           child: FlutterFlowExpandedImageView(
                                             image: Image.network(
-                                              'https://nbd.bravetech.media/img/slot2.jpeg',
+                                              'https://nbd.bravetech.media/img/slot1.jpg',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: false,
+                                            tag: 'imageTag1',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag1',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Image.network(
+                                          'https://nbd.bravetech.media/img/slot1.jpg',
+                                          width: 100,
+                                          height: 100,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.network(
+                                              'https://nbd.bravetech.media/img/slot2.jpg',
                                               fit: BoxFit.contain,
                                             ),
                                             allowRotation: false,
@@ -631,14 +663,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     child: Hero(
                                       tag: 'imageTag2',
                                       transitionOnUserGestures: true,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child: Image.network(
-                                          'https://nbd.bravetech.media/img/slot2.jpeg',
-                                          width: 100,
-                                          height: 100,
-                                          fit: BoxFit.cover,
-                                        ),
+                                      child: Image.network(
+                                        'https://nbd.bravetech.media/img/slot2.jpeg',
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
@@ -668,35 +697,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         width: 100,
                                         height: 100,
                                         fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  InkWell(
-                                    onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.fade,
-                                          child: FlutterFlowExpandedImageView(
-                                            image: Image.network(
-                                              'https://nbd.bravetech.media/img/slot3.jpeg',
-                                              fit: BoxFit.contain,
-                                            ),
-                                            allowRotation: false,
-                                            tag: 'imageTag4',
-                                            useHeroAnimation: true,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    child: Hero(
-                                      tag: 'imageTag4',
-                                      transitionOnUserGestures: true,
-                                      child: Image.network(
-                                        'https://nbd.bravetech.media/img/slot3.jpeg',
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.fill,
                                       ),
                                     ),
                                   )

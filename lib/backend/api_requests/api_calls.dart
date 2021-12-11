@@ -1,9 +1,13 @@
+import 'package:get_storage/get_storage.dart';
+
 import 'api_manager.dart';
 import '../../globals.dart' as globals;
 
 const apiUrl = "http://192.168.131.31:8001/api";
 
-dynamic userToken = globals.userToken;
+final box = GetStorage();
+
+dynamic userToken = box.read("token");
 
 Future<dynamic> authCheckCall() {
   return ApiManager.instance.makeApiCall(
@@ -18,7 +22,7 @@ Future<dynamic> authCheckCall() {
   );
 }
 
-Future<dynamic> logoutCall() {
+Future<dynamic> logoutCall() async {
   return ApiManager.instance.makeApiCall(
     callName: 'authCheck',
     apiUrl: '$apiUrl/logout',

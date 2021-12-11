@@ -1,5 +1,6 @@
-import 'dart:convert';
+
 import 'dart:io';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -8,11 +9,11 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginWidget extends StatefulWidget {
-  LoginWidget({Key key}) : super(key: key);
+  LoginWidget({Key key, this.action}) : super(key: key);
+  final action;
 
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
@@ -209,12 +210,15 @@ class _LoginWidgetState extends State<LoginWidget> {
                             var departmentId =
                                 accessToken['department_id'].toString();
 
-                            globals.box.write("name", name);
-                            globals.box.write("userId", userId);
-                            globals.box.write("role", role);
-                            globals.box.write("department", department);
-                            globals.box.write("department_id", departmentId);
-                            globals.box.write("token", mytoken);
+                            box.write("name", name);
+                           box.write("userId", userId);
+                           box.write("role", role);
+                            box.write("department", department);
+                            box.write("department_id", departmentId);
+                            box.write("token", mytoken);
+
+                            dynamic userToken = box.read("token");
+                            print(userToken);
 
                             await Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(

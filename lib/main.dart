@@ -1,4 +1,4 @@
-
+import 'package:brave/login/login_widget.dart';
 import 'package:brave/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,17 +11,17 @@ import 'radio_page/radio_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 
 Future<void> main() async {
-  await GetStorage.init();
-runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+   await GetStorage.init();
+   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final String user;
-
-  const MyApp({Key key, this.user}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final box = GetStorage();
     return MaterialApp(
       title: 'brave',
       localizationsDelegates: [
@@ -31,16 +31,18 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: IndexWidget(),
+      home: 
+       box.read("token") != null?
+      IndexWidget():LoginWidget()
     );
   }
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage, this.user}) : super(key: key);
+  NavBarPage({Key key, this.initialPage}) : super(key: key);
 
   final String initialPage;
-  final String user;
+
 
   @override
   _NavBarPageState createState() => _NavBarPageState();
@@ -59,7 +61,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'HomePage': HomePageWidget(user: widget.user),
+      'HomePage': HomePageWidget(),
       'LiveTvPage': LiveTvPageWidget(),
       'RadioPage': RadioPageWidget(),
       'SettingsPage': SettingsPageWidget(),

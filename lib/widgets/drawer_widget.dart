@@ -1,10 +1,9 @@
 import 'package:brave/backend/api_requests/api_calls.dart';
 import 'package:brave/dir_reports/index.dart';
-import 'package:brave/index/index_widget.dart';
 import 'package:brave/issues/index.dart';
 import 'package:brave/messages/index.dart';
 import 'package:brave/store_page/list.dart';
-import '../globals.dart' as globals;
+import 'package:restart_app/restart_app.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../login/login_widget.dart';
@@ -465,16 +464,9 @@ class DrawerWidget extends StatelessWidget {
                                   onTap: () async {
                                     await logoutCall();
 
-                                    await globals.box.erase();
+                                    await box.erase();
 
-                                    //Navigator.popUntil(context, ModalRoute.withName('/'));
-                                    Navigator.pop(context,
-                                        true); // It worked for me instead of above line
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => LoginWidget()),
-                                    );
+                                   Restart.restartApp();
                                   },
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,

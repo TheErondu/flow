@@ -2,11 +2,6 @@ library flutteronboardingscreens;
 
 import 'dart:async';
 import 'dart:io';
-import 'package:brave/flutter_flow/flutter_flow_theme.dart';
-import 'package:brave/flutter_flow/flutter_flow_widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../globals.dart' as globals;
 import 'package:brave/backend/api_requests/api_calls.dart';
 import 'package:brave/login/login_widget.dart';
 import 'package:brave/main.dart';
@@ -35,7 +30,6 @@ class IntroScreenState extends State<IntroScreen> {
   final PageController controller = new PageController();
   int currentPage = 0;
   bool lastPage = false;
-  bool _loadingButton = false;
   dynamic check;
   bool hasToken = false;
 
@@ -63,6 +57,12 @@ class IntroScreenState extends State<IntroScreen> {
       }
     });
   }
+
+   @override
+dispose() {
+  controller.dispose(); // you need this
+  super.dispose();
+}
 
   Widget _buildPageIndicator(int page) {
     return Container(
@@ -129,12 +129,10 @@ class IntroScreenState extends State<IntroScreen> {
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0)),
                         onPressed: () async {
-                          setState(() => _loadingButton = true);
-                          globals.userToken != null
+                           box.read("token")!=null
                               ? setState(() => hasToken = true)
                               : setState(() => hasToken = false);
                           print(hasToken);
-                          print(globals.userToken);
                           hasToken == true
                               ? await authCheck()
                               : await Navigator.of(context).pushReplacement(
@@ -190,7 +188,6 @@ class IntroScreenState extends State<IntroScreen> {
         ),
       );
     } finally {
-      setState(() => _loadingButton = false);
     }
   }
 }

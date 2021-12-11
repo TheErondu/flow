@@ -34,7 +34,7 @@ class _ReportsLandingWidgetState extends State<ReportsLandingWidget>
       duration: Duration(seconds: (5)),
       vsync: this,
     );
-    print(globals.userToken);
+ 
   }
   @override
 dispose() {
