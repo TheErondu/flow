@@ -11,7 +11,6 @@ import 'radio_page/radio_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
 
 Future<void> main() async {
-  runApp(MyApp());
   await GetStorage.init();
 runApp(MyApp());
 }

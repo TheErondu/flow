@@ -52,7 +52,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         curve: Curves.easeIn,
       );
     });
-    print(globals.summary);
   }
 
   @override
@@ -680,7 +679,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           type: PageTransitionType.fade,
                                           child: FlutterFlowExpandedImageView(
                                             image: Image.network(
-                                              'https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/263525517_10157756317304058_2536621070585344515_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=973b4a&_nc_ohc=hfCnxiOzBJsAX9gE0Ew&_nc_ht=scontent-los2-1.xx&oh=e19f7e67226b1bbf44c850bf150c13ab&oe=61B2F711',
+                                              'https://nbd.bravetech.media/img/slot3.jpeg',
                                               fit: BoxFit.contain,
                                             ),
                                             allowRotation: false,
@@ -694,7 +693,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       tag: 'imageTag4',
                                       transitionOnUserGestures: true,
                                       child: Image.network(
-                                        'https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/263525517_10157756317304058_2536621070585344515_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=973b4a&_nc_ohc=hfCnxiOzBJsAX9gE0Ew&_nc_ht=scontent-los2-1.xx&oh=e19f7e67226b1bbf44c850bf150c13ab&oe=61B2F711',
+                                        'https://nbd.bravetech.media/img/slot3.jpeg',
                                         width: 100,
                                         height: 100,
                                         fit: BoxFit.fill,

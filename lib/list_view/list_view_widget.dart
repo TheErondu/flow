@@ -34,7 +34,14 @@ class _ReportsLandingWidgetState extends State<ReportsLandingWidget>
       duration: Duration(seconds: (5)),
       vsync: this,
     );
+    print(globals.userToken);
   }
+  @override
+dispose() {
+  _controller.dispose(); // you need this
+  super.dispose();
+}
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,11 @@
 import 'api_manager.dart';
 import '../../globals.dart' as globals;
 
-const apiUrl = "http://127.0.0.1:8001/api";
+const apiUrl = "http://192.168.131.31:8001/api";
 
-Future<dynamic> authCheckCall(){
- var userToken = globals.userToken;
+dynamic userToken = globals.userToken;
+
+Future<dynamic> authCheckCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'authCheck',
     apiUrl: '$apiUrl',
@@ -17,8 +18,7 @@ Future<dynamic> authCheckCall(){
   );
 }
 
-Future<dynamic> logoutCall(){
- var userToken = globals.userToken;
+Future<dynamic> logoutCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'authCheck',
     apiUrl: '$apiUrl/logout',
@@ -46,8 +46,7 @@ Future<dynamic> loginCall(
   );
 }
 
-Future<dynamic> getOblogsCall(){
-  var userToken = globals.userToken;
+Future<dynamic> getOblogsCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'GetOblogs',
     apiUrl: '$apiUrl/oblogs',
@@ -61,7 +60,6 @@ Future<dynamic> getOblogsCall(){
 }
 
 Future<dynamic> getEditorLogsCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'GetEditorLogs',
     apiUrl: '$apiUrl/logs/editors',
@@ -75,7 +73,6 @@ Future<dynamic> getEditorLogsCall() {
 }
 
 Future<dynamic> getMCRLogsCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'GetMCRlogs',
     apiUrl: '$apiUrl/logs/mcr',
@@ -88,8 +85,7 @@ Future<dynamic> getMCRLogsCall() {
   );
 }
 
-Future<dynamic> getDirReportsCall()  {
- var userToken = globals.userToken;
+Future<dynamic> getDirReportsCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'GetDirReports',
     apiUrl: '$apiUrl/reports',
@@ -102,8 +98,7 @@ Future<dynamic> getDirReportsCall()  {
   );
 }
 
-Future<dynamic> getProdLogsCall()  {
- var userToken = globals.userToken;
+Future<dynamic> getProdLogsCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'GetProdLogs',
     apiUrl: '$apiUrl/logs/production',
@@ -117,7 +112,6 @@ Future<dynamic> getProdLogsCall()  {
 }
 
 Future<dynamic> getGraphicsLogsCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'getGraphicsLogs',
     apiUrl: '$apiUrl/logs/graphics-news',
@@ -131,7 +125,6 @@ Future<dynamic> getGraphicsLogsCall() {
 }
 
 Future<dynamic> getGraphicsLogShowsCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'getGraphicsLogShows',
     apiUrl: '$apiUrl/logs/graphics-shows',
@@ -145,7 +138,6 @@ Future<dynamic> getGraphicsLogShowsCall() {
 }
 
 Future<dynamic> getPrompterLogsCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'getPrompterLogs',
     apiUrl: '$apiUrl/logs/prompter-news',
@@ -159,7 +151,6 @@ Future<dynamic> getPrompterLogsCall() {
 }
 
 Future<dynamic> getPrompterLogShowsCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'getGraphicsLogShows',
     apiUrl: '$apiUrl/logs/prompter-shows',
@@ -173,7 +164,6 @@ Future<dynamic> getPrompterLogShowsCall() {
 }
 
 Future<dynamic> getStoreRequestsCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'getStoreRequests',
     apiUrl: '$apiUrl/logs/store-requests',
@@ -187,7 +177,6 @@ Future<dynamic> getStoreRequestsCall() {
 }
 
 Future<dynamic> getMyIssuesCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'getMyIssues',
     apiUrl: '$apiUrl/issues',
@@ -200,8 +189,7 @@ Future<dynamic> getMyIssuesCall() {
   );
 }
 
-Future<dynamic> getMessagesCall()  {
- var userToken = globals.userToken;
+Future<dynamic> getMessagesCall() {
   return ApiManager.instance.makeApiCall(
     callName: 'getMessages',
     apiUrl: '$apiUrl/messages',
@@ -215,7 +203,6 @@ Future<dynamic> getMessagesCall()  {
 }
 
 Future<dynamic> getUserInfoCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'GetUserInfo',
     apiUrl: '$apiUrl',
@@ -229,7 +216,6 @@ Future<dynamic> getUserInfoCall() {
 }
 
 Future<dynamic> getStoreInfoCall() {
- var userToken = globals.userToken;
   return ApiManager.instance.makeApiCall(
     callName: 'getStoreInfo',
     apiUrl: '$apiUrl/my-store',

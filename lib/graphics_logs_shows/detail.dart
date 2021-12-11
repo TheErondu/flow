@@ -143,7 +143,7 @@ class _GraphicsLogShowsDetailPageWidgetState
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(0, 4, 0, 0),
                                                 child: Text(
-                                                  "Segment",
+                                                  "Segment : ",
                                                   style: FlutterFlowTheme
                                                       .bodyText2
                                                       .override(

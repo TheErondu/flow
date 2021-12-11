@@ -112,140 +112,1794 @@ class _ProdLogsDetailPageWidgetState
                             )
                           ],
                         ),
-                        Padding(
+                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                                child: Text(
-                                  'Log Details',
-                                  style: FlutterFlowTheme.bodyText2.override(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xFF6F6C6C),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.87,
-                          height: 1,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Text(data['production_show_logs'][iD]['show_name']
-                                      .toString(),
-                                  style: FlutterFlowTheme.subtitle1.override(
-                                    fontFamily: 'Poppins',
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 8),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 4),
-                                child: Icon(
-                                  Icons.schedule,
-                                  color: FlutterFlowTheme.primaryColor,
-                                  size: 20,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(data['production_show_logs'][iD]['date']
-                                      .toString(),
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xFF4B39EF),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(24, 0, 0, 4),
-                                child: Icon(
-                                  Icons.location_on_sharp,
-                                  color: FlutterFlowTheme.primaryColor,
-                                  size: 20,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                child: Text(data['production_show_logs'][iD]['location']
-                                      .toString(),
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: FlutterFlowTheme.primaryColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                                child: Text(
-                                  'Comments',
-                                  style: FlutterFlowTheme.bodyText2,
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 4),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 4, 0, 4),
-                                  child: Text(data['production_show_logs'][iD]['comment']
-                                      .toString(),
-                                    textAlign: TextAlign.start,
-                                    style: GoogleFonts.getFont(
-                                      'Lexend Deca',
-                                      color: FlutterFlowTheme.tertiaryColor,
+                                      8, 0, 8, 0),
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color: Colors.white,
+                                    elevation: 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Show name : ",
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['show_name']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.85,
+                                          height: 1,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFDBE2E7),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Location : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['location']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Director : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['director']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Producer  : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['producer1']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Producer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['producer2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Vision Mixer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['vision_mixer']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Sound Technician : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['sound_technician']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Engineer : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                              ['engineer']
+                                                          .toString()
+                                                          .maybeHandleOverflow(
+                                                              maxChars: 25,
+                                                              replacement:
+                                                                  "...") ??
+                                                      "---",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Camera operator : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['camera_operator1']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                         Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Camera operator : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['camera_operator2']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                         Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Host  : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['host']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                         Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Graphics : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['graphics']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                         Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Digital : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['digital']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                         Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Transmission : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['transmission']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                         Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  "Transmission Time : ",
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 4, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['transmission_time']
+                                                      .toString()
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: "..."),
+                                                  style: FlutterFlowTheme
+                                                      .subtitle1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF151B1E),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['comment']
+                                                      .toString(),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 0, 4),
+                                                child: Icon(
+                                                  Icons.schedule,
+                                                  color: Color(0xFF4B39EF),
+                                                  size: 20,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(4, 0, 0, 0),
+                                                child: Text(
+                                                  data['production_show_logs'][iD]
+                                                          ['created_at']
+                                                      .toString(),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Color(0xFF4B39EF),
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
+                        // Padding(
+                        //   padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
+                        //   child: Row(
+                        //     mainAxisSize: MainAxisSize.max,
+                        //     children: [
+                        //       Expanded(
+                        //         child: Padding(
+                        //           padding: EdgeInsetsDirectional.fromSTEB(
+                        //               8, 0, 8, 0),
+                        //           child: Card(
+                        //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                        //             color: Colors.white,
+                        //             elevation: 3,
+                        //             shape: RoundedRectangleBorder(
+                        //               borderRadius: BorderRadius.circular(8),
+                        //             ),
+                        //             child: Column(
+                        //               mainAxisSize: MainAxisSize.max,
+                        //               children: [
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Segment : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .bodyText2
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF4B39EF),
+                        //                             fontSize: 14,
+                        //                             fontWeight: FontWeight.w600,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['segment2']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .bodyText2
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF4B39EF),
+                        //                             fontSize: 14,
+                        //                             fontWeight: FontWeight.w600,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Container(
+                        //                   width: MediaQuery.of(context)
+                        //                           .size
+                        //                           .width *
+                        //                       0.85,
+                        //                   height: 1,
+                        //                   decoration: BoxDecoration(
+                        //                     color: Color(0xFFDBE2E7),
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Host : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['host2']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Director : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['director2']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Anchor : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['anchor2']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Graphics : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['graphics2']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "producer : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['producer2']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "PA : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['pa2']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Engineer : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                       ['engineer2']
+                        //                                   .toString()
+                        //                                   .maybeHandleOverflow(
+                        //                                       maxChars: 25,
+                        //                                       replacement:
+                        //                                           "...") ??
+                        //                               "---",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Tags In : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['tags_in2']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Expanded(
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['challenges2']
+                        //                               .toString(),
+                        //                           style: FlutterFlowTheme
+                        //                               .bodyText2
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF8B97A2),
+                        //                             fontSize: 14,
+                        //                             fontWeight:
+                        //                                 FontWeight.normal,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 8),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 0, 0, 4),
+                        //                         child: Icon(
+                        //                           Icons.schedule,
+                        //                           color: Color(0xFF4B39EF),
+                        //                           size: 20,
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(4, 0, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['created_at']
+                        //                               .toString(),
+                        //                           style: FlutterFlowTheme
+                        //                               .bodyText1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF4B39EF),
+                        //                             fontSize: 14,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // Padding(
+                        //   padding: EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
+                        //   child: Row(
+                        //     mainAxisSize: MainAxisSize.max,
+                        //     children: [
+                        //       Expanded(
+                        //         child: Padding(
+                        //           padding: EdgeInsetsDirectional.fromSTEB(
+                        //               8, 0, 8, 0),
+                        //           child: Card(
+                        //             clipBehavior: Clip.antiAliasWithSaveLayer,
+                        //             color: Colors.white,
+                        //             elevation: 3,
+                        //             shape: RoundedRectangleBorder(
+                        //               borderRadius: BorderRadius.circular(8),
+                        //             ),
+                        //             child: Column(
+                        //               mainAxisSize: MainAxisSize.max,
+                        //               children: [
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Segment : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .bodyText2
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF4B39EF),
+                        //                             fontSize: 14,
+                        //                             fontWeight: FontWeight.w600,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['segment3']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .bodyText2
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF4B39EF),
+                        //                             fontSize: 14,
+                        //                             fontWeight: FontWeight.w600,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Container(
+                        //                   width: MediaQuery.of(context)
+                        //                           .size
+                        //                           .width *
+                        //                       0.85,
+                        //                   height: 1,
+                        //                   decoration: BoxDecoration(
+                        //                     color: Color(0xFFDBE2E7),
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Host : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['host3']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Director : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['director3']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Anchor : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['anchor3']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Graphics : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['graphics3']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "producer : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['producer3']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "PA : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['pa3']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Engineer : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                       ['engineer3']
+                        //                                   .toString()
+                        //                                   .maybeHandleOverflow(
+                        //                                       maxChars: 25,
+                        //                                       replacement:
+                        //                                           "...") ??
+                        //                               "---",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           "Tags In : ",
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 4, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['tags_in3']
+                        //                               .toString()
+                        //                               .maybeHandleOverflow(
+                        //                                   maxChars: 25,
+                        //                                   replacement: "..."),
+                        //                           style: FlutterFlowTheme
+                        //                               .subtitle1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF151B1E),
+                        //                             fontSize: 18,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 4),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Expanded(
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['challenges3']
+                        //                               .toString(),
+                        //                           style: FlutterFlowTheme
+                        //                               .bodyText2
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF8B97A2),
+                        //                             fontSize: 14,
+                        //                             fontWeight:
+                        //                                 FontWeight.normal,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //                 Padding(
+                        //                   padding:
+                        //                       EdgeInsetsDirectional.fromSTEB(
+                        //                           12, 4, 12, 8),
+                        //                   child: Row(
+                        //                     mainAxisSize: MainAxisSize.max,
+                        //                     children: [
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(0, 0, 0, 4),
+                        //                         child: Icon(
+                        //                           Icons.schedule,
+                        //                           color: Color(0xFF4B39EF),
+                        //                           size: 20,
+                        //                         ),
+                        //                       ),
+                        //                       Padding(
+                        //                         padding: EdgeInsetsDirectional
+                        //                             .fromSTEB(4, 0, 0, 0),
+                        //                         child: Text(
+                        //                           data['production_show_logs'][iD]
+                        //                                   ['created_at']
+                        //                               .toString(),
+                        //                           style: FlutterFlowTheme
+                        //                               .bodyText1
+                        //                               .override(
+                        //                             fontFamily: 'Lexend Deca',
+                        //                             color: Color(0xFF4B39EF),
+                        //                             fontSize: 14,
+                        //                             fontWeight: FontWeight.w500,
+                        //                           ),
+                        //                         ),
+                        //                       ),
+                        //                     ],
+                        //                   ),
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 40),
                           child: FFButtonWidget(

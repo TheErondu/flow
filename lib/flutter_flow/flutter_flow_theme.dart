@@ -6,6 +6,8 @@ class FlutterFlowTheme {
   static const Color primaryColor = Color(0xFF152754);
   static const Color secondaryColor = Color(0xFFEE8B60);
   static const Color tertiaryColor = Color(0xFFFFFFFF);
+  static const Color greyText = Colors.grey;
+  static const Color nightColor = Colors.black;
 
   String primaryFontFamily = 'Poppins';
   String secondaryFontFamily = 'Roboto';
