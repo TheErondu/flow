@@ -1,9 +1,10 @@
+import 'dart:io';
+import '../globals.dart' as globals;
 import 'package:brave/backend/api_requests/api_calls.dart';
 import 'package:brave/dir_reports/index.dart';
 import 'package:brave/issues/index.dart';
 import 'package:brave/messages/index.dart';
 import 'package:brave/store_page/list.dart';
-import 'package:restart_app/restart_app.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../login/login_widget.dart';
@@ -465,8 +466,7 @@ class DrawerWidget extends StatelessWidget {
                                     await logoutCall();
 
                                     await box.erase();
-
-                                   Restart.restartApp();
+                                    globals.restartApp(context);
                                   },
                                   child: Card(
                                     clipBehavior: Clip.antiAliasWithSaveLayer,

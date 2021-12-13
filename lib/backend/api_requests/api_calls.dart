@@ -3,7 +3,7 @@ import 'package:get_storage/get_storage.dart';
 import 'api_manager.dart';
 import '../../globals.dart' as globals;
 
-const apiUrl = "http://192.168.131.31:8001/api";
+const apiUrl = "http://192.168.20.89:8001/api";
 
 final box = GetStorage();
 
