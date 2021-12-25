@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1022914113897",
+    "project_id": "brave-app-490b6",
+    "storage_bucket": "brave-app-490b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022914113897:android:256e967f81814334c78df8",
+        "android_client_info": {
+          "package_name": "app.bravetech.media"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022914113897-cekdlrgck4t3u63d41h6887aqc9n0coj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaM-3V5FdrDxOwK38zvmt-FQbMXzf0Y1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022914113897-cekdlrgck4t3u63d41h6887aqc9n0coj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
