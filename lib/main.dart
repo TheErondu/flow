@@ -9,15 +9,24 @@ import 'home_page/home_page_widget.dart';
 import 'live_tv_page/live_tv_page_widget.dart';
 import 'radio_page/radio_page_widget.dart';
 import 'settings_page/settings_page_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:brave/backend/notifications.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
    await GetStorage.init();
+    await init();
    runApp(MyApp());
 }
 
+Future init() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+}
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
+  
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -39,7 +48,7 @@ class MyApp extends StatelessWidget {
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({Key key, this.initialPage}) : super(key: key);
+  NavBarPage({Key key,  this.initialPage}) : super(key: key);
 
   final String initialPage;
 
@@ -51,12 +60,25 @@ class NavBarPage extends StatefulWidget {
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
   String _currentPage = 'HomePage';
+   String notificationTitle = 'No Title';
+  String notificationBody = 'No Body';
+  String notificationData = 'No Data';
 
   @override
   void initState() {
+    final firebaseMessaging = FCM();
+    firebaseMessaging.setNotifications();
+    
+    firebaseMessaging.streamCtlr.stream.listen(_changeData);
+    firebaseMessaging.bodyCtlr.stream.listen(_changeBody);
+    firebaseMessaging.titleCtlr.stream.listen(_changeTitle);
     super.initState();
     _currentPage = widget.initialPage ?? _currentPage;
   }
+
+    _changeData(String msg) => setState(() => notificationData = msg);
+  _changeBody(String msg) => setState(() => notificationBody = msg);
+  _changeTitle(String msg) => setState(() => notificationTitle = msg);
 
   @override
   Widget build(BuildContext context) {
